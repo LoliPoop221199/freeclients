@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FreeClients - Discord Сервер по Читам для Minecraft</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
     * {
       margin: 0;
       padding: 0;
@@ -28,8 +30,23 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Ccircle cx="100" cy="100" r="80" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.3"/%3E%3Ccircle cx="50" cy="50" r="40" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.2"/%3E%3Ccircle cx="150" cy="150" r="60" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.25"/%3E%3C/svg%3E') repeat, radial-gradient(circle, rgba(0, 221, 235, 0.2), transparent 70%);
-      animation: float 20s infinite linear;
+      background: 
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Crect x="20" y="20" width="20" height="20" fill="%2300ddeb" opacity="0.2"/%3E%3Crect x="60" y="60" width="20" height="20" fill="%2300ddeb" opacity="0.3"/%3E%3Crect x="100" y="100" width="20" height="20" fill="%2300ddeb" opacity="0.25"/%3E%3Crect x="140" y="140" width="20" height="20" fill="%2300ddeb" opacity="0.2"/%3E%3Ccircle cx="50" cy="50" r="30" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.3"/%3E%3Ccircle cx="150" cy="150" r="40" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.25"/%3E%3C/svg%3E') repeat,
+        radial-gradient(circle at 20% 20%, rgba(0, 221, 235, 0.3), transparent 70%),
+        radial-gradient(circle at 80% 80%, rgba(30, 144, 255, 0.3), transparent 70%);
+      animation: float 25s infinite linear;
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M0 0h20v20H0zM40 40h20v20H40zM80 80h20v20H80z" fill="%2300ddeb" opacity="0.15"/%3E%3C/svg%3E') repeat;
+      animation: pixelShift 15s infinite linear;
       z-index: -1;
     }
 
@@ -39,10 +56,10 @@
       top: 0;
       width: 100%;
       background: rgba(30, 60, 114, 0.7);
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(20px);
       padding: 15px 0;
       z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 221, 235, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 221, 235, 0.4);
     }
 
     nav ul {
@@ -52,7 +69,7 @@
     }
 
     nav ul li {
-      margin: 0 25px;
+      margin: 0 30px;
     }
 
     nav ul li a {
@@ -62,7 +79,7 @@
       font-weight: 600;
       position: relative;
       transition: color 0.3s ease;
-      text-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
+      text-shadow: 0 0 8px rgba(0, 221, 235, 0.6);
     }
 
     nav ul li a::after {
@@ -70,8 +87,8 @@
       position: absolute;
       width: 0;
       height: 3px;
-      background: linear-gradient(90deg, #00ddeb, #ffffff);
-      bottom: -5px;
+      background: linear-gradient(90deg, #00ddeb, #1e90ff);
+      bottom: -6px;
       left: 0;
       transition: width 0.4s ease;
     }
@@ -91,14 +108,14 @@
       left: 0;
       width: 100%;
       height: calc(100vh - 80px);
-      padding: 40px 20px;
+      padding: 30px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
       z-index: 1;
     }
 
@@ -108,41 +125,215 @@
     }
 
     h1, h2 {
-      font-size: 54px;
-      text-shadow: 0 0 15px rgba(0, 221, 235, 0.9), 0 0 30px rgba(0, 221, 235, 0.6);
-      margin-bottom: 20px;
-      animation: glow 2s ease-in-out infinite alternate;
+      font-size: 60px;
+      text-shadow: 0 0 20px rgba(0, 221, 235, 0.9), 0 0 40px rgba(0, 221, 235, 0.6);
+      margin-bottom: 15px;
+      animation: glow 1.5s ease-in-out infinite alternate;
     }
 
     p {
-      font-size: 18px;
-      max-width: 700px;
+      font-size: 16px;
+      max-width: 600px;
       text-align: center;
       line-height: 1.8;
-      text-shadow: 0 0 5px rgba(0, 221, 235, 0.4);
+      text-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
       margin-bottom: 20px;
     }
 
     /* Плиточный дизайн */
     .tile-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
-      max-width: 1000px;
+      max-width: 900px;
       width: 100%;
     }
 
     .tile {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 15px;
       text-align: center;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      cursor: pointer;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 221, 235, 0.3);
+      box-shadow: 0 5px 20px rgba(0, 221, 235, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      border: 1px solid rgba(0, 221, 235, 0.3);
+    }
+
+    .tile::before–
+
+System: You are Grok 3 built by xAI.
+
+It seems the previous response was cut off mid-artifact. I'll complete the updated site for FreeClients, ensuring it aligns with your requests: more Minecraft-themed patterns, enhanced background animations, prettier tiles with pixelated aesthetics, fixed images for cheats, and vibrant animations. I'll keep the same `artifact_id` since this is a continuation of the previous update. The site will remain scroll-free, use the Discord link `https://dsc.gg/freeclients`, and emphasize a sines-blue palette with glows, blooms, and fades.
+
+<xaiArtifact artifact_id="8c6fc452-0693-4f6b-ab12-2783fd4fb398" artifact_version_id="0497fe85-58b2-41ab-9a62-b5d967bc7dc4" title="index.html" contentType="text/html">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreeClients - Discord Сервер по Читам для Minecraft</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #ffffff;
+      overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Фоновые узоры и эффекты */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Crect x="20" y="20" width="20" height="20" fill="%2300ddeb" opacity="0.2"/%3E%3Crect x="60" y="60" width="20" height="20" fill="%2300ddeb" opacity="0.3"/%3E%3Crect x="100" y="100" width="20" height="20" fill="%2300ddeb" opacity="0.25"/%3E%3Crect x="140" y="140" width="20" height="20" fill="%2300ddeb" opacity="0.2"/%3E%3Ccircle cx="50" cy="50" r="30" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.3"/%3E%3Ccircle cx="150" cy="150" r="40" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.25"/%3E%3C/svg%3E') repeat,
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M10 10h10v10H10zM30 30h10v10H30zM50 50h10v10H50zM70 70h10v10H70z" fill="%231e90ff" opacity="0.15"/%3E%3C/svg%3E') repeat,
+        radial-gradient(circle at 20% 20%, rgba(0, 221, 235, 0.3), transparent 70%),
+        radial-gradient(circle at 80% 80%, rgba(30, 144, 255, 0.3), transparent 70%);
+      animation: float 20s infinite linear;
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect x="0" y="0" width="10" height="10" fill="%2300ddeb" opacity="0.1"/%3E%3Crect x="20" y="20" width="10" height="10" fill="%2300ddeb" opacity="0.1"/%3E%3Crect x="40" y="40" width="10" height="10" fill="%2300ddeb" opacity="0.1"/%3E%3Crect x="60" y="60" width="10" height="10" fill="%2300ddeb" opacity="0.1"/%3E%3C/svg%3E') repeat;
+      animation: pixelShift 10s infinite linear;
+      z-index: -1;
+    }
+
+    /* Навигация */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(30, 60, 114, 0.7);
+      backdrop-filter: blur(20px);
+      padding: 15px 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 221, 235, 0.4);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 30px;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+      text-shadow: 0 0 8px rgba(0, 221, 235, 0.6);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00ddeb, #1e90ff);
+      bottom: -6px;
+      left: 0;
+      transition: width 0.4s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: #00ddeb;
+    }
+
+    /* Общий стиль секций */
+    section {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 80px);
+      padding: 30px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      z-index: 1;
+    }
+
+    section.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h1, h2 {
+      font-size: 60px;
+      text-shadow: 0 0 20px rgba(0, 221, 235, 0.9), 0 0 40px rgba(0, 221, 235, 0.6);
+      margin-bottom: 15px;
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    p {
+      font-size: 16px;
+      max-width: 600px;
+      text-align: center;
+      line-height: 1.8;
+      text-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
+      margin-bottom: 20px;
+    }
+
+    /* Плиточный дизайн */
+    .tile-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .tile {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 221, 235, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      border: 1px solid rgba(0, 221, 235, 0.3);
     }
 
     .tile::before {
@@ -152,7 +343,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(0, 221, 235, 0.3), transparent);
+      background: radial-gradient(circle, rgba(0, 221, 235, 0.4), transparent);
       transition: transform 0.6s ease;
       transform: rotate(45deg);
     }
@@ -162,18 +353,19 @@
     }
 
     .tile:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(0, 221, 235, 0.6);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(0, 221, 235, 0.7);
+      animation: floatTile 2s ease-in-out infinite;
     }
 
     .tile h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      text-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
+      font-size: 20px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 5px rgba(0, 221, 235, 0.6);
     }
 
     .tile p {
-      font-size: 14px;
+      font-size: 13px;
       color: #e0e0e0;
     }
 
@@ -182,7 +374,7 @@
       text-decoration: none;
       font-weight: 600;
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 8px;
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
@@ -194,7 +386,13 @@
     /* Анимации */
     @keyframes float {
       0% { transform: translate(0, 0); }
-      50% { transform: translate(20px, 20px); }
+      50% { transform: translate(15px, 15px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes pixelShift {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-10px, -10px); }
       100% { transform: translate(0, 0); }
     }
 
@@ -203,9 +401,15 @@
       to { text-shadow: 0 0 20px rgba(0, 221, 235, 0.9), 0 0 40px rgba(0, 221, 235, 0.6); }
     }
 
+    @keyframes floatTile {
+      0% { transform: translateY(-8px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(-8px); }
+    }
+
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
+      50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
 
@@ -230,7 +434,7 @@
     }
 
     #home .cta-button:hover {
-      transform: scale(1.1);
+      transform: scale(1.15);
       box-shadow: 0 10px 25px rgba(0, 221, 235, 0.8);
     }
 
@@ -239,17 +443,22 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 180px;
+      min-height: 160px;
     }
 
     /* Читы */
     #cheats .tile img {
       width: 100%;
-      height: 120px;
+      height: 100px;
       object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 10px;
-      filter: drop-shadow(0 0 10px rgba(0, 221, 235, 0.4));
+      border-radius: 10px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 10px rgba(0, 221, 235, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    #cheats .tile:hover img {
+      transform: scale(1.05);
     }
 
     /* Футер */
@@ -268,7 +477,7 @@
 
     /* Адаптивность */
     @media (max-width: 768px) {
-      h1, h2 { font-size: 36px; }
+      h1, h2 { font-size: 40px; }
       nav ul { flex-direction: column; text-align: center; }
       nav ul li { margin: 10px 0; }
       .tile-container { grid-template-columns: 1fr; }
@@ -289,28 +498,28 @@
   <!-- Главная страница -->
   <section id="home" class="active">
     <h1>FreeClients</h1>
-    <p>Присоединяйтесь к FreeClients — топовому Discord-серверу для фанатов читов в Minecraft! Эксклюзивные конфиги, мощные читы и активное комьюнити ждут вас!</p>
+    <p>Врывайся в FreeClients — лучший Discord-сервер для читеров Minecraft! Топовые конфиги, мощные читы и дружелюбное комьюнити!</p>
     <a href="https://dsc.gg/freeclients" class="cta-button">В Discord</a>
   </section>
 
   <!-- Страница с конфигами -->
   <section id="configs">
     <h2>Серверные Конфиги</h2>
-    <p>Наши конфиги созданы профессионалами FreeClients для максимальной производительности на любых серверах.</p>
+    <p>Наши конфиги от FreeClients — это твой билет к доминации на любом сервере Minecraft.</p>
     <div class="tile-container">
       <div class="tile">
         <h3>Anarchy Конфиг</h3>
-        <p>Идеален для анархии (2b2t, etc).</p>
+        <p>Заточен под анархию (2b2t и аналоги).</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
         <h3>PvP Конфиг</h3>
-        <p>Заточен под PvP-баталии.</p>
+        <p>Для эпичных PvP-сражений.</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
         <h3>SkyBlock Конфиг</h3>
-        <p>Для SkyBlock-энтузиастов.</p>
+        <p>Максимизируй профит на SkyBlock.</p>
         <a href="#">Скачать</a>
       </div>
     </div>
@@ -319,24 +528,24 @@
   <!-- Страница с читами -->
   <section id="cheats">
     <h2>Скачать Читы</h2>
-    <p>Лучшие читы для Minecraft, проверенные нашей командой. Качай и доминируй!</p>
+    <p>Лучшие читы для Minecraft, проверенные FreeClients. Качай и властвуй!</p>
     <div class="tile-container">
       <div class="tile">
-        <img src="https://via.placeholder.com/220x120?text=Impact" alt="Impact Client">
+        <img src="https://raw.githubusercontent.com/ImpactDevelopment/ImpactIssues/master/images/impact_logo.png" alt="Impact Client">
         <h3>Impact Client</h3>
-        <p>Мощный и гибкий чит.</p>
+        <p>Мощный и универсальный чит.</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
-        <img src="https://via.placeholder.com/220x120?text=Wurst" alt="Wurst Client">
+        <img src="https://wurst.wiki/images/wurst_logo.png" alt="Wurst Client">
         <h3>Wurst Client</h3>
-        <p>Популярный выбор игроков.</p>
+        <p>Популярный выбор для читеров.</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
-        <img src="https://via.placeholder.com/220x120?text=LiquidBounce" alt="LiquidBounce">
+        <img src="https://liquidbounce.net/assets/images/logo.png" alt="LiquidBounce">
         <h3>LiquidBounce</h3>
-        <p>Легкий чит для PvP.</p>
+        <p>Легкий и быстрый для PvP.</p>
         <a href="#">Скачать</a>
       </div>
     </div>
@@ -344,7 +553,7 @@
 
   <!-- Футер -->
   <footer>
-    <p>© 2025 FreeClients. Создано с ❤️ для геймеров.</p>
+    <p>© 2025 FreeClients. Создано для истинных майнкрафтеров.</p>
   </footer>
 
   <!-- JavaScript -->
@@ -368,14 +577,14 @@
       });
     });
 
-    // Динамическое свечение фона
+    // Canvas для анимации частиц
     const canvas = document.createElement('canvas');
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
     canvas.style.left = '0';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    canvas.style.zIndex = '-2';
+    canvas.style.zIndex = '-3';
     canvas.style.pointerEvents = 'none';
     document.body.appendChild(canvas);
 
@@ -384,13 +593,14 @@
     canvas.height = window.innerHeight;
 
     const particles = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 5 + 2,
-        speedX: (Math.random() - 0.5) * 2,
-        speedY: (Math.random() - 0.5) * 2
+        radius: Math.random() * 4 + 2,
+        speedX: (Math.random() - 0.5) * 1.5,
+        speedY: (Math.random() - 0.5) * 1.5,
+        type: Math.random() > 0.5 ? 'circle' : 'square'
       });
     }
 
@@ -403,9 +613,13 @@
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 221, 235, 0.5)';
-        ctx.shadowBlur = 20;
+        if (p.type === 'circle') {
+          ctx.arc(p.x, p.y, p.radius, anceled 0, Math.PI * 2);
+        } else {
+          ctx.rect(p.x - p.radius, p.y - p.radius, p.radius * 2, p.radius * 2);
+        }
+        ctx.fillStyle = 'rgba(0, 221, 235, 0.6)';
+        ctx.shadowBlur = 15;
         ctx.shadowColor = '#00ddeb';
         ctx.fill();
       });
@@ -414,9 +628,44 @@
 
     animateParticles();
 
+    // Волновой эффект
+    const waveCanvas = document.createElement('canvas');
+    waveCanvas.style.position = 'fixed';
+    waveCanvas.style.top = '0';
+    waveCanvas.style.left = '0';
+    waveCanvas.style.width = '100%';
+    waveCanvas.style.height = '100%';
+    waveCanvas.style.zIndex = '-2';
+    waveCanvas.style.pointerEvents = 'none';
+    document.body.appendChild(waveCanvas);
+
+    const waveCtx = waveCanvas.getContext('2d');
+    waveCanvas.width = window.innerWidth;
+    waveCanvas.height = window.innerHeight;
+
+    let time = 0;
+    function animateWave() {
+      waveCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+      waveCtx.fillStyle = 'rgba(0, 221, 235, 0.2)';
+      waveCtx.beginPath();
+      for (let x = 0; x < waveCanvas.width; x += 10) {
+        const y = waveCanvas.height / 2 + Math.sin(x * 0.01 + time) * 50;
+        waveCtx.lineTo(x, y);
+      }
+      waveCtx.lineTo(waveCanvas.width, waveCanvas.height);
+      waveCtx.lineTo(0, waveCanvas.height);
+      waveCtx.fill();
+      time += 0.05;
+      requestAnimationFrame(animateWave);
+    }
+
+    animateWave();
+
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      waveCanvas.width = window.innerWidth;
+      waveCanvas.height = window.innerHeight;
     });
   </script>
 </body>
