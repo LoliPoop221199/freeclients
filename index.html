@@ -15,7 +15,6 @@
     }
 
     body {
-      /* Осветленный фон */
       background: linear-gradient(135deg, #1a1a2a, #2a3a50);
       color: #ffffff;
       overflow: hidden;
@@ -53,15 +52,14 @@
       z-index: -1;
     }
 
-    /* Обновленный стиль навигации без темной полосы */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: transparent; /* Убрана темная подложка */
+      background: transparent;
       padding: 15px 0;
       z-index: 1000;
-      border-bottom: none; /* Убрана граница */
+      border-bottom: none;
     }
 
     nav ul {
@@ -175,7 +173,6 @@
     }
 
     .tile {
-      /* Добавлен плавный блюр на углах */
       background: rgba(15, 25, 50, 0.4);
       backdrop-filter: blur(15px);
       border-radius: 15px;
@@ -188,7 +185,6 @@
       cursor: pointer;
       border: 1px solid rgba(0, 200, 255, 0.2);
       z-index: 1;
-      /* Добавлен фильтр для блюра углов */
       filter: drop-shadow(0 0 10px rgba(0, 150, 255, 0.2));
     }
 
@@ -236,20 +232,16 @@
       width: 100%;
       height: 160px;
       overflow: hidden;
-      /* Добавлено для корректного отображения видео */
       background: black;
     }
 
-    .video-container video {
+    .video-container iframe {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-      /* Добавлено для предотвращения искажений */
-      display: block;
+      border: none;
     }
 
-    .tile:hover .video-container video {
+    .tile:hover .video-container iframe {
       transform: scale(1.05);
     }
 
@@ -315,7 +307,7 @@
       width: 200%;
       height: 200%;
       background: linear-gradient(45deg, transparent, rgba(0, 200, 255, 0.05), transparent);
-      transform: rotate(45deg);
+      transform: دهیم rotate(45deg);
       z-index: -1;
     }
 
@@ -364,10 +356,10 @@
       background: black;
     }
 
-    .modal-video-container video {
+    .modal-video-container iframe {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      border: none;
     }
 
     .modal-description {
@@ -461,7 +453,6 @@
       padding-bottom: 100px;
     }
 
-    /* Обновленный футер без темной полосы */
     footer {
       position: fixed;
       bottom: 0;
@@ -490,7 +481,7 @@
 
     @keyframes pixelShift {
       0% { transform: translate(0, 0); }
-      50% { transform: translate(-γpx, -10px); }
+      50% { transform: translate(-10px, -10px); }
       100% { transform: translate(0, 0); }
     }
 
@@ -538,14 +529,13 @@
   <nav>
     <ul>
       <li><a href="#home" onclick="showSection('home')">Главная</a></li>
-      <li><a href="#cheats" onclick="showSection('cheats')"></a></li>
+      <li><a href="#cheats" onclick="showSection('cheats')">Читы</a></li>
     </ul>
   </nav>
 
   <section id="home" class="active">
     <h1>FreeClients</h1>
     <p>Лучший Discord-сервер для читеров Minecraft! Топовые читы, мощные обходы и дружелюбное комьюнити!</p>
-    <!-- Изменено для перенаправления без открытия Discord -->
     <a href="https://dsc.gg/freeclients" class="cta-button">Присоединиться в Discord</a>
   </section>
 
@@ -553,10 +543,8 @@
     <h2>Наши Читы</h2>
     <p>Выберите один из наших проверенных читов для доминации в Minecraft</p>
     <div class="tile-container">
-      <!-- Чит 1: Raven XD -->
       <div class="tile" onclick="openModal('Raven XD 3.0.1', 'https://youtu.be/Yi7-zhQp3J4?si=vZ-MsY8RDh2ek_kF', 'Мощный чит с обходами Matrix, Polar, Grim, Intave. Версия для 1.8.9', ['Matrix', 'Polar', 'Grim', 'Intave'], 'https://github.com/xia-mc/Raven-XD/releases/tag/v3.0.1')">
         <div class="video-container">
-          <!-- Заменено на iframe для корректного воспроизведения YouTube -->
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yi7-zhQp3J4?autoplay=1&loop=1&mute=1&playlist=Yi7-zhQp3J4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <h3>Raven XD 3.0.1</h3>
@@ -564,7 +552,6 @@
         <a href="https://github.com/xia-mc/Raven-XD/releases/tag/v3.0.1" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <!-- Чит 2: LiquidBounce -->
       <div class="tile" onclick="openModal('LiquidBounce b100', 'https://youtu.be/41DEz1N9r1I?si=3-oY_8QGLUHq0Ayi', 'Популярный чит с обходами Intave, Polar, Matrix. Версия для 1.8.9', ['Intave', 'Polar', 'Matrix'], 'https://liquidbounce.net/')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/41DEz1N9r1I?autoplay=1&loop=1&mute=1&playlist=41DEz1N9r1I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -574,7 +561,6 @@
         <a href="https://liquidbounce.net/" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <!-- Чит 3: Augustus -->
       <div class="tile" onclick="openModal('Augustus 2.6', 'https://youtu.be/iH9jKICXNOE?si=Dy_3s1bqltqbuLp5', 'Мощный PvP чит с обходами Intave, NCP, AAC. Версия для 1.8.9', ['Intave', 'NCP', 'AAC'], 'https://workupload.com/file/rcxH6fcWxzp')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/iH9jKICXNOE?autoplay=1&loop=1&mute=1&playlist=iH9jKICXNOE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -584,7 +570,6 @@
         <a href="https://workupload.com/file/rcxH6fcWxzp" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <!-- Чит 4: Rise -->
       <div class="tile" onclick="openModal('Rise 6.1.30', 'https://youtu.be/AvZ9lCX7-RI?si=Heft_0U9XuJ901KQ', 'Легендарный чит с обходами Intave, WatchDog, NCP, AAC, Matrix, Vulcan, Verus', ['Intave', 'WatchDog', 'NCP', 'AAC', 'Matrix', 'Vulcan', 'Verus'], 'https://mega.nz/file/UHVmgJra#SnSzvami3soQnZaTm4hfBswQNtL8BnTcGAGKVi1W028')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/AvZ9lCX7-RI?autoplay=1&loop=1&mute=1&playlist=AvZ9lCX7-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -594,7 +579,6 @@
         <a href="https://mega.nz/file/UHVmgJra#SnSzvami3soQnZaTm4hfBswQNtL8BnTcGAGKVi1W028" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <!-- Чит 5: Breeze -->
       <div class="tile" onclick="openModal('Breeze 1.01', 'https://youtu.be/BKPEwFLTaNA?si=5B6ZQGuIcd9X4Rqc', 'Легитный чит для скрытого читинга. Версия для 1.8.9', ['Intave', 'NCP', 'AAC'], 'https://www.mediafire.com/file/gaef52pvta4s2id/breeze_crack.jar/file')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BKPEwFLTaNA?autoplay=1&loop=1&mute=1&playlist=BKPEwFLTaNA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -604,7 +588,6 @@
         <a href="https://www.mediafire.com/file/gaef52pvta4s2id/breeze_crack.jar/file" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <!-- Чит 6: Eject -->
       <div class="tile" onclick="openModal('Eject Client', 'https://youtu.be/t9R7mi_hoOA?si=o0nWSCvE4D3U1i83', 'Инжект клиент с обходами Matrix, Grim. Версия для 1.8.9', ['Matrix', 'Grim'], 'https://www.mediafire.com/file/wmnmojyu40zdjmy/Eject.zip/file')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/t9R7mi_hoOA?autoplay=1&loop=1&mute=1&playlist=t9R7mi_hoOA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -624,7 +607,6 @@
       </div>
       <div class="modal-body">
         <div class="modal-video-container">
-          <!-- Используем iframe для модального окна -->
           <iframe id="modalVideo" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <p class="modal-description" id="modalDescription">Описание чита будет здесь</p>
@@ -662,7 +644,6 @@
     function openModal(title, videoUrl, description, features, downloadLink) {
       const modal = document.getElementById('cheatModal');
       document.getElementById('modalTitle').textContent = title;
-      // Преобразуем URL видео для iframe
       const videoId = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/)[1];
       document.getElementById('modalVideo').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}`;
       document.getElementById('modalDescription').textContent = description;
@@ -685,7 +666,7 @@
     function closeModal() {
       const modal = document.getElementById('cheatModal');
       modal.classList.remove('active');
-      document.getElementById('modalVideo').src = ''; // Очистка видео
+      document.getElementById('modalVideo').src = '';
       document.body.style.overflow = '';
     }
 
