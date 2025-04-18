@@ -128,7 +128,7 @@
     section.active {
       opacity: 1;
       transform: scale(1);
-      z-index: 2; /* Повышен z-index для активной секции */
+      z-index: 2;
     }
 
     h1, h2 {
@@ -409,44 +409,54 @@
       position: relative;
     }
 
-    #home .cta-button {
-      display: inline-block;
+    #home .discord-button {
+      display: inline-flex;
+      align-items: center;
       padding: 15px 40px;
-      background: linear-gradient(45deg, #00a2ff, #00f2ff);
+      background: linear-gradient(45deg, #7289da, #00f2ff);
       color: #ffffff;
       text-decoration: none;
       border-radius: 50px;
       font-weight: 700;
+      font-size: 18px;
       margin-top: 30px;
-      box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5);
+      box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5), 0 0 20px rgba(114, 137, 218, 0.7);
       transition: all 0.3s ease;
-      animation: pulse 2s infinite;
+      animation: glowButton 1.5s ease-in-out infinite alternate;
       position: relative;
       overflow: hidden;
       z-index: 1;
-      border: none;
+      border: 2px solid #7289da;
       cursor: pointer;
     }
 
-    #home .cta-button::before {
+    #home .discord-button::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transition: 0.5s;
       z-index: -1;
     }
 
-    #home .cta-button:hover::before {
+    #home .discord-button:hover::before {
       left: 100%;
     }
 
-    #home .cta-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 150, 255, 0.7);
+    #home .discord-button:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 150, 255, 0.7), 0 0 30px rgba(114, 137, 218, 0.9);
+      background: linear-gradient(45deg, #00a2ff, #7289da);
+    }
+
+    #home .discord-button svg {
+      margin-right: 10px;
+      fill: #ffffff;
+      width: 24px;
+      height: 24px;
     }
 
     #cheats {
@@ -491,16 +501,15 @@
       to { text-shadow: 0 0 20px rgba(0, 150, 255, 0.9), 0 0 40px rgba(0, 150, 255, 0.6); }
     }
 
+    @keyframes glowButton {
+      from { box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5), 0 0 20px rgba(114, 137, 218, 0.7); }
+      to { box-shadow: 0 7px 30px rgba(0, 150, 255, 0.7), 0 0 30px rgba(114, 137, 218, 0.9); }
+    }
+
     @keyframes floatTile {
       0% { transform: translateY(-10px); }
       50% { transform: translateY(-15px); }
       100% { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5); }
-      50% { transform: scale(1.05); box-shadow: 0 7px 30px rgba(0, 150, 255, 0.7); }
-      100% { transform: scale(1); box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5); }
     }
 
     @keyframes modalAppear {
@@ -523,6 +532,7 @@
       .modal-content { width: 95%; padding: 20px; }
       .modal-video-container { height: 200px; }
       .video-container { height: 120px; }
+      #home .discord-button { font-size: 16px; padding: 12px 30px; }
     }
   </style>
 </head>
@@ -536,8 +546,12 @@
 
   <section id="home" class="active">
     <h1>FreeClients</h1>
-    <p>Лучший Discord-сервер для читеров Minecraft! Топовые читы, мощные обходы и дружелюбное комьюнити!</p>
-    <a href="https://dsc.gg/freeclients" class="cta-button">Присоединиться в Discord</a>
+    <p>Добро пожаловать на лучший Discord-сервер для читеров Minecraft! Присоединяйся к нашему дружелюбному комьюнити, где ты найдешь топовые читы, мощные обходы античитов и эксклюзивные конфиги для любых клиентов. Участвуй в регулярных розыгрышах, получай уникальные темы и настройки для читов на любой вкус и цвет!</p>
+    <p>На нашем сервере ты всегда будешь в курсе последних обновлений, получишь поддержку от опытных игроков и сможешь доминировать на любом сервере Minecraft. Не упусти шанс стать частью нашей команды!</p>
+    <a href="https://dsc.gg/freeclients" class="discord-button">
+      <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.433-.4269.9148-.6508 1.4037a18.3371 18.3371 0 00-5.4636 0c-.2239-.4889-.4388-.9707-.6508-1.4037a.0746.0746 0 00-.0785-.0371 19.7361 19.7361 0 00-4.8851 1.5152.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9744 19.9744 0 005.9933 3.0307.077.077 0 00.0843-.0286c.4618-.6307.8749-1.2952 1.2263-1.9772a.076.076 0 00-.0419-.1057c-.6521-.2474-1.2743-.5489-1.8721-.8923a.0772.0772 0 01-.0076-.1277c.1258-.094.2192-.2012.3128-.2944a13.9973 13.9973 0 003.5339 1.1013 14.0286 14.0286 0 003.5319-1.1013c.0936.0932.187.1996.3128.2944a.0772.0772 0 01-.0076.1277c-.5978.3434-1.22.6449-1.8721.8923a.076.076 0 00-.0419.1057c.3514.682 1.2263 1.9772 1.2263 1.9772a.077.077 0 00.0843.0286 19.9744 19.9744 0 005.9933-3.0307.0824.0824 0 00.0312-.0561c.5007-4.4799-.3532-9.0139-3.8685-13.6881a.0699.0699 0 00-.0321-.0277zM8.02 15.3312c-.716 0-1.3023-.586-1.3023-1.3072 0-.7212.5863-1.3072 1.3023-1.3072.7212 0 1.3072.586 1.3072 1.3072 0 .7212-.586 1.3072-1.3072 1.3072zm7.956 0c-.716 0-1.3023-.586-1.3023-1.3072 0-.7212.5863-1.3072 1.3023-1.3072.7212 0 1.3072.586 1.3072 1.3072 0 .7212-.586 1.3072-1.3072 1.3072z"/></svg>
+      Присоединиться в Discord
+    </a>
   </section>
 
   <section id="cheats">
@@ -643,10 +657,9 @@
     }
 
     function openModal(title, videoUrl, description, features, downloadLink) {
-      // Проверяем, активна ли секция cheats
       const cheatsSection = document.getElementById('cheats');
       if (!cheatsSection.classList.contains('active')) {
-        return; // Не открываем модальное окно, если секция cheats не активна
+        return;
       }
 
       const modal = document.getElementById('cheatModal');
@@ -706,7 +719,7 @@
       
       document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
-          if (link.classList.contains('download-btn') || link.classList.contains('modal-download')) {
+          if (link.classList.contains('download-btn') || link.classList.contains('modal-download') || link.classList.contains('discord-button')) {
             e.stopPropagation();
           }
         });
