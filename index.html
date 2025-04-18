@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreeClients - Discord Сервер по Читам для Minecraft</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Навигация */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(30, 60, 114, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #00ddeb;
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: #00ddeb;
+    }
+
+    /* Общий стиль секций */
+    section {
+      min-height: 100vh;
+      padding: 100px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    section.hidden {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2 {
+      font-size: 48px;
+      text-shadow: 0 0 10px rgba(0, 221, 235, 0.8);
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    p {
+      font-size: 18px;
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    /* Плиточный дизайн */
+    .tile-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .tile {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 221, 235, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .tile:hover::before {
+      left: 100%;
+    }
+
+    .tile:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 221, 235, 0.5);
+    }
+
+    .tile h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .tile p {
+      font-size: 16px;
+      color: #e0e0e0;
+    }
+
+    .tile a {
+      color: #00ddeb;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .tile a:hover {
+      color: #ffffff;
+    }
+
+    /* Анимации */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Главная страница */
+    #home {
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd66d72') no-repeat center/cover;
+      position: relative;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(30, 60, 114, 0.6);
+      z-index: 0;
+    }
+
+    #home > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    #home .cta-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #00ddeb;
+      color: #1e3c72;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    #home .cta-button:hover {
+      background: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Конфиги */
+    #configs .tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+    }
+
+    /* Читы */
+    #cheats .tile img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Футер */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(30, 60, 114, 0.8);
+      backdrop-filter: blur(10px);
+      color: #e0e0e0;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      h1, h2 { font-size: 36px; }
+      nav ul { flex-direction: column; text-align: center; }
+      nav ul li { margin: 10px 0; }
+      .tile-container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигация -->
+  <nav>
+    <ul>
+      <li><a href="#home" onclick="showSection('home')">Главная</a></li>
+      <li><a href="#configs" onclick="showSection('configs')">Конфиги</a></li>
+      <li><a href="#cheats" onclick="showSection('cheats')">Читы</a></li>
+    </ul>
+  </nav>
+
+  <!-- Главная страница -->
+  <section id="home" class="visible">
+    <h1>FreeClients</h1>
+    <p>Добро пожаловать в FreeClients — лучший Discord-сервер для любителей читов в Minecraft! Присоединяйтесь к нашему сообществу, чтобы получить доступ к эксклюзивным конфигам, читам и поддержке от профессионалов.</p>
+    <a href="https://discord.gg/freeclients" class="cta-button pulse">Присоединиться к Discord</a>
+  </section>
+
+  <!-- Страница с конфигами -->
+  <section id="configs" class="hidden">
+    <h2>Серверные Конфиги</h2>
+    <p>Ознакомьтесь с нашими тщательно настроенными конфигами от создателей FreeClients. Они оптимизированы для лучшей производительности и геймплея.</p>
+    <div class="tile-container">
+      <div class="tile">
+        <h3>Конфиг для Anarchy</h3>
+        <p>Идеально подходит для анархических серверов, таких как 2b2t.</p>
+        <a href="#">Скачать</a>
+      </div>
+      <div class="tile">
+        <h3>Конфиг для PvP</h3>
+        <p>Оптимизирован для интенсивных PvP-сражений.</p>
+        <a href="#">Скачать</a>
+      </div>
+      <div class="tile">
+        <h3>Конфиг для SkyBlock</h3>
+        <p>Настроен для максимальной эффективности на SkyBlock.</p>
+        <a href="#">Скачать</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Страница с читами -->
+  <section id="cheats" class="hidden">
+    <h2>Скачать Читы</h2>
+    <p>Получите доступ к лучшим читам для Minecraft, протестированным и одобренным нашей командой.</p>
+    <div class="tile-container">
+      <div class="tile">
+        <img src="https://via.placeholder.com/250x150?text=Cheat+1" alt="Cheat 1">
+        <h3>Impact Client</h3>
+        <p>Мощный и универсальный чит-клиент.</p>
+        <a href="#">Скачать</a>
+      </div>
+      <div class="tile">
+        <img src="https://via.placeholder.com/250x150?text=Cheat+2" alt="Cheat 2">
+        <h3>Wurst Client</h3>
+        <p>Популярный чит с множеством функций.</p>
+        <a href="#">Скачать</a>
+      </div>
+      <div class="tile">
+        <img src="https://via.placeholder.com/250x150?text=Cheat+3" alt="Cheat 3">
+        <h3>LiquidBounce</h3>
+        <p>Легкий и быстрый чит для PvP.</p>
+        <a href="#">Скачать</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <p>&copy; 2025 FreeClients. Все права защищены.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Плавная прокрутка и управление видимостью секций
+    function showSection(sectionId) {
+      document.querySelectorAll('section').forEach(section => {
+        section.classList.add('hidden');
+        section.classList.remove('visible');
+      });
+      const targetSection = document.getElementById(sectionId);
+      targetSection.classList.remove('hidden');
+      targetSection.classList.add('visible');
+      window.scrollTo({
+        top: targetSection.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+
+    // Анимация при загрузке
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.tile').forEach((tile, index) => {
+        setTimeout(() => {
+          tile.style.opacity = '1';
+          tile.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+    });
+
+    // Параллакс-эффект для фона
+    window.addEventListener('scroll', () => {
+      const homeSection = document.getElementById('home');
+      const scrollPosition = window.pageYOffset;
+      homeSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+    });
+  </script>
+</body>
+</html>
