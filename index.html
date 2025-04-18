@@ -128,6 +128,7 @@
     section.active {
       opacity: 1;
       transform: scale(1);
+      z-index: 2; /* Повышен z-index для активной секции */
     }
 
     h1, h2 {
@@ -307,7 +308,7 @@
       width: 200%;
       height: 200%;
       background: linear-gradient(45deg, transparent, rgba(0, 200, 255, 0.05), transparent);
-      transform: دهیم rotate(45deg);
+      transform: rotate(45deg);
       z-index: -1;
     }
 
@@ -642,6 +643,12 @@
     }
 
     function openModal(title, videoUrl, description, features, downloadLink) {
+      // Проверяем, активна ли секция cheats
+      const cheatsSection = document.getElementById('cheats');
+      if (!cheatsSection.classList.contains('active')) {
+        return; // Не открываем модальное окно, если секция cheats не активна
+      }
+
       const modal = document.getElementById('cheatModal');
       document.getElementById('modalTitle').textContent = title;
       const videoId = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/)[1];
