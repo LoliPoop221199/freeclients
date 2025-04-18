@@ -468,13 +468,18 @@
     }
 
     .admin-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
       gap: 20px;
-      max-width: 800px;
+      max-width: 1200px;
       width: 100%;
       padding: 20px;
+    }
+
+    .admin-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .admin-card {
@@ -482,8 +487,6 @@
       backdrop-filter: blur(15px);
       border-radius: 15px;
       padding: 20px;
-      width: 100%;
-      max-width: 500px;
       text-align: center;
       box-shadow: 0 8px 32px rgba(0, 150, 255, 0.2);
       transition: all 0.4s ease;
@@ -516,10 +519,69 @@
       border-color: rgba(0, 200, 255, 0.5);
     }
 
+    .admin-card .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      border: 2px solid rgba(0, 200, 255, 0.5);
+      box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+    }
+
     .admin-card h3 {
       font-size: 24px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       font-weight: 700;
+    }
+
+    .admin-card .status {
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .admin-card .status::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .admin-card .status.online::before {
+      background: #43b581;
+      box-shadow: 0 0 5px #43b581;
+    }
+
+    .admin-card .status.idle::before {
+      background: #faa61a;
+      box-shadow: 0 0 5px #faa61a;
+    }
+
+    .admin-card .status.dnd::before {
+      background: #f04747;
+      box-shadow: 0 0 5px #f04747;
+    }
+
+    .admin-card .status.offline::before {
+      background: #747f8d;
+      box-shadow: 0 0 5px #747f8d;
+    }
+
+    .admin-card .description {
+      font-size: 14px;
+      color: #c0c0c0;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .admin-card .role {
+      font-size: 16px;
+      color: #e0e0e0;
+      margin-bottom: 10px;
     }
 
     .admin-card.owner h3 {
@@ -535,12 +597,6 @@
     .admin-card.admin h3 {
       color: #ff4d4d;
       text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
-    }
-
-    .admin-card p {
-      font-size: 16px;
-      color: #e0e0e0;
-      margin-bottom: 10px;
     }
 
     footer {
@@ -559,7 +615,7 @@
       background: linear-gradient(90deg, #00a2ff, #00f2ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
+      text-shadow: 0 0 10px rgba(0, 150,  nécessite: 255, 0.3);
     }
 
     @keyframes float {
@@ -599,13 +655,15 @@
       h1, h2 { font-size: 40px; }
       nav ul li { margin: 0 15px; }
       nav ul li a { font-size: 16px; }
-      .tile-container, .admin-container { grid-template-columns: 1fr; }
+      .tile-container { grid-template-columns: 1fr; }
+      .admin-container { grid-template-columns: 1fr; }
       section { padding: 20px 10px; }
       .modal-content { width: 95%; padding: 20px; }
       .modal-video-container { height: 200px; }
       .video-container { height: 120px; }
       #home .discord-button { font-size: 16px; padding: 12px 30px; }
       .admin-card { max-width: 90%; }
+      .admin-card .avatar { width: 60px; height: 60px; }
     }
   </style>
 </head>
@@ -692,30 +750,9 @@
     <h2>Администрация</h2>
     <p>Наша команда администрации сервера FreeClients</p>
     <div class="admin-container">
-      <div class="admin-card owner" onclick="window.location.href='https://discord.com/users/670675833421299763'">
-        <h3>LoliPoop1k</h3>
-        <p>Owner</p>
-      </div>
-      <div class="admin-card owner" onclick="window.location.href='https://discord.com/users/1058735953482620958'">
-        <h3>mqzwqx</h3>
-        <p>Owner</p>
-      </div>
-      <div class="admin-card support" onclick="window.location.href='https://discord.com/users/1074034819148824637'">
-        <h3>anarxla</h3>
-        <p>Support</p>
-      </div>
-      <div class="admin-card support" onclick="window.location.href='https://discord.com/users/932603097136660500'">
-        <h3>goodgame073</h3>
-        <p>Support</p>
-      </div>
-      <div class="admin-card support" onclick="window.location.href='https://discord.com/users/1073209143386705930'">
-        <h3>whydamn</h3>
-        <p>Support</p>
-      </div>
-      <div class="admin-card admin" onclick="window.location.href='https://discord.com/users/992948606636134420'">
-        <h3>luna.system</h3>
-        <p>Admin</p>
-      </div>
+      <div class="admin-column" id="column1"></div>
+      <div class="admin-column" id="column2"></div>
+      <div class="admin-column" id="column3"></div>
     </div>
   </section>
 
@@ -741,6 +778,124 @@
   </footer>
 
   <script>
+    // Mock Discord API response (replace with real API in production)
+    const mockDiscordData = [
+      {
+        id: '1058735953482620958',
+        username: 'mqzwqx',
+        avatar: 'a_1234567890abcdef1234567890abcdef',
+        status: 'online',
+        about: 'Co-founder of FreeClients, passionate about Minecraft cheating.',
+        role: 'Owner',
+        profileUrl: 'https://discord.com/users/1058735953482620958'
+      },
+      {
+        id: '670675833421299763',
+        username: 'LoliPoop1k',
+        avatar: 'a_abcdef1234567890abcdef1234567890',
+        status: 'idle',
+        about: 'Lead developer and server owner, always working on new cheats.',
+        role: 'Owner',
+        profileUrl: 'https://discord.com/users/670675833421299763'
+      },
+      {
+        id: '992948606636134420',
+        username: 'luna.system',
+        avatar: 'a_7890abcdef1234567890abcdef123456',
+        status: 'dnd',
+        about: 'Admin managing community events and moderation.',
+        role: 'Admin',
+        profileUrl: 'https://discord.com/users/992948606636134420'
+      },
+      {
+        id: '1074034819148824637',
+        username: 'anarxla',
+        avatar: 'a_4567890abcdef1234567890abcdef123',
+        status: 'online',
+        about: 'Support team member helping with user queries.',
+        role: 'Support',
+        profileUrl: 'https://discord.com/users/1074034819148824637'
+      },
+      {
+        id: '932603097136660500',
+        username: 'goodgame073',
+        avatar: 'a_1237890abcdef1234567890abcdef456',
+        status: 'offline',
+        about: 'Support specialist for technical issues and cheat setups.',
+        role: 'Support',
+        profileUrl: 'https://discord.com/users/932603097136660500'
+      },
+      {
+        id: '1073209143386705930',
+        username: 'whydamn',
+        avatar: 'a_abcdef78901234567890abcdef123456',
+        status: 'online',
+        about: 'Community support and config creator.',
+        role: 'Support',
+        profileUrl: 'https://discord.com/users/1073209143386705930'
+      }
+    ];
+
+    // Simulate fetching Discord data (replace with real API call)
+    async function fetchDiscordData() {
+      // In production, fetch from your backend API, e.g.:
+      // const response = await fetch('/api/discord/users');
+      // return await response.json();
+      return new Promise(resolve => {
+        setTimeout(() => resolve(mockDiscordData), 1000);
+      });
+    }
+
+    // Simulate fetching status updates
+    async function fetchStatusUpdates() {
+      // In production, fetch updated statuses from your backend
+      // This mock randomly changes statuses for demonstration
+      return mockDiscordData.map(admin => ({
+        ...admin,
+        status: ['online', 'idle', 'dnd', 'offline'][Math.floor(Math.random() * 4)]
+      }));
+    }
+
+    // Populate admin cards in a 3-column grid
+    async function populateAdminCards() {
+      const data = await fetchDiscordData();
+      const column1 = document.getElementById('column1');
+      const column2 = document.getElementById('column2');
+      const column3 = document.getElementById('column3');
+
+      // Distribute admins: 2 per column
+      const columns = [column1, column2, column3];
+      data.forEach((admin, index) => {
+        const column = columns[Math.floor(index / 2)];
+        const card = document.createElement('div');
+        card.className = `admin-card ${admin.role.toLowerCase()}`;
+        card.onclick = () => window.location.href = admin.profileUrl;
+        card.innerHTML = `
+          <img src="https://cdn.discordapp.com/avatars/${admin.id}/${admin.avatar}.png" alt="${admin.username}'s avatar" class="avatar">
+          <h3>${admin.username}</h3>
+          <div class="status ${admin.status}">${admin.status.charAt(0).toUpperCase() + admin.status.slice(1)}</div>
+          <p class="description">${admin.about}</p>
+          <p class="role">${admin.role}</p>
+        `;
+        column.appendChild(card);
+      });
+    }
+
+    // Update statuses periodically
+    async function updateStatuses() {
+      const data = await fetchStatusUpdates();
+      const cards = document.querySelectorAll('.admin-card');
+      cards.forEach(card => {
+        const username = card.querySelector('h3').textContent;
+        const admin = data.find(a => a.username === username);
+        if (admin) {
+          const statusDiv = card.querySelector('.status');
+          statusDiv.className = `status ${admin.status}`;
+          statusDiv.textContent = admin.status.charAt(0).toUpperCase() + admin.status.slice(1);
+        }
+      });
+    }
+
     function showSection(sectionId) {
       document.querySelectorAll('section').forEach(section => {
         section.classList.remove('active');
@@ -831,6 +986,9 @@
 
     window.addEventListener('load', () => {
       createStars();
+      populateAdminCards();
+      // Update statuses every 30 seconds
+      setInterval(updateStatuses, 30000);
       
       document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
