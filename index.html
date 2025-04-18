@@ -464,6 +464,87 @@
       padding-bottom: 100px;
     }
 
+    #admin {
+      overflow-y: auto;
+      padding-bottom: 100px;
+      text-align: center;
+    }
+
+    .admin-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .admin-card {
+      background: rgba(15, 25, 50, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 150, 255, 0.2);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0, 200, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .admin-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 200, 255, 0.1), transparent);
+      transition: transform 0.8s ease;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+
+    .admin-card:hover::before {
+      transform: rotate(45deg) translateX(100%);
+    }
+
+    .admin-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(0, 150, 255, 0.4);
+      border-color: rgba(0, 200, 255, 0.5);
+    }
+
+    .admin-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .admin-card.owner h3 {
+      color: #00a2ff;
+      text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+    }
+
+    .admin-card.support h3 {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    .admin-card.admin h3 {
+      color: #ff4d4d;
+      text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+    }
+
+    .admin-card p {
+      font-size: 16px;
+      color: #e0e0e0;
+      margin-bottom: 10px;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -506,12 +587,6 @@
       to { box-shadow: 0 7px 30px rgba(0, 150, 255, 0.7), 0 0 30px rgba(114, 137, 218, 0.9); }
     }
 
-    @keyframes floatTile {
-      0% { transform: translateY(-10px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(-10px); }
-    }
-
     @keyframes modalAppear {
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -527,12 +602,13 @@
       h1, h2 { font-size: 40px; }
       nav ul li { margin: 0 15px; }
       nav ul li a { font-size: 16px; }
-      .tile-container { grid-template-columns: 1fr; }
+      .tile-container, .admin-container { grid-template-columns: 1fr; }
       section { padding: 20px 10px; }
       .modal-content { width: 95%; padding: 20px; }
       .modal-video-container { height: 200px; }
       .video-container { height: 120px; }
       #home .discord-button { font-size: 16px; padding: 12px 30px; }
+      .admin-card { max-width: 90%; }
     }
   </style>
 </head>
@@ -541,6 +617,7 @@
     <ul>
       <li><a href="#home" onclick="showSection('home')">Главная</a></li>
       <li><a href="#cheats" onclick="showSection('cheats')">Читы</a></li>
+      <li><a href="#admin" onclick="showSection('admin')">Администрация</a></li>
     </ul>
   </nav>
 
@@ -614,6 +691,37 @@
     </div>
   </section>
 
+  <section id="admin">
+    <h2>Админ</h2>
+    <p>Наша команда администрации сервера FreeClients</p>
+    <div class="admin-container">
+      <div class="admin-card owner">
+        <h3>LoliPoop1k</h3>
+        <p>Owner</p>
+      </div>
+      <div class="admin-card owner">
+        <h3>mqzwqx</h3>
+        <p>Owner</p>
+      </div>
+      <div class="admin-card support">
+        <h3>anarxla</h3>
+        <p>Support</p>
+      </div>
+      <div class="admin-card support">
+        <h3>goodgame073</h3>
+        <p>Support</p>
+      </div>
+      <div class="admin-card support">
+        <h3>whydamn</h3>
+        <p>Support</p>
+      </div>
+      <div class="admin-card admin">
+        <h3>luna.system</h3>
+        <p>Admin</p>
+      </div>
+    </div>
+  </section>
+
   <div class="modal" id="cheatModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -651,6 +759,16 @@
             tile.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             tile.style.opacity = '1';
             tile.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      } else if (sectionId === 'admin') {
+        document.querySelectorAll('.admin-card').forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
           }, index * 100);
         });
       }
