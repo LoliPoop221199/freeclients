@@ -9,13 +9,28 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #ffffff;
-      overflow-x: hidden;
+      overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Фоновые узоры и эффекты */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Ccircle cx="100" cy="100" r="80" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.3"/%3E%3Ccircle cx="50" cy="50" r="40" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.2"/%3E%3Ccircle cx="150" cy="150" r="60" fill="none" stroke="%2300ddeb" stroke-width="2" opacity="0.25"/%3E%3C/svg%3E') repeat, radial-gradient(circle, rgba(0, 221, 235, 0.2), transparent 70%);
+      animation: float 20s infinite linear;
+      z-index: -1;
     }
 
     /* Навигация */
@@ -23,11 +38,11 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(30, 60, 114, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(30, 60, 114, 0.7);
+      backdrop-filter: blur(15px);
       padding: 15px 0;
       z-index: 1000;
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 221, 235, 0.3);
     }
 
     nav ul {
@@ -37,27 +52,28 @@
     }
 
     nav ul li {
-      margin: 0 20px;
+      margin: 0 25px;
     }
 
     nav ul li a {
       color: #ffffff;
       text-decoration: none;
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 600;
       position: relative;
       transition: color 0.3s ease;
+      text-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
     }
 
     nav ul li a::after {
       content: '';
       position: absolute;
       width: 0;
-      height: 2px;
-      background: #00ddeb;
+      height: 3px;
+      background: linear-gradient(90deg, #00ddeb, #ffffff);
       bottom: -5px;
       left: 0;
-      transition: width 0.3s ease;
+      transition: width 0.4s ease;
     }
 
     nav ul li a:hover::after {
@@ -70,158 +86,152 @@
 
     /* Общий стиль секций */
     section {
-      min-height: 100vh;
-      padding: 100px 20px;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 80px);
+      padding: 40px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    section.hidden {
       opacity: 0;
-      transform: translateY(50px);
+      transform: scale(0.95);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      z-index: 1;
     }
 
-    section.visible {
+    section.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
     }
 
     h1, h2 {
-      font-size: 48px;
-      text-shadow: 0 0 10px rgba(0, 221, 235, 0.8);
+      font-size: 54px;
+      text-shadow: 0 0 15px rgba(0, 221, 235, 0.9), 0 0 30px rgba(0, 221, 235, 0.6);
       margin-bottom: 20px;
-      animation: fadeIn 1s ease;
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
     p {
       font-size: 18px;
-      max-width: 800px;
+      max-width: 700px;
       text-align: center;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      line-height: 1.8;
+      text-shadow: 0 0 5px rgba(0, 221, 235, 0.4);
+      margin-bottom: 20px;
     }
 
     /* Плиточный дизайн */
     .tile-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
       width: 100%;
     }
 
     .tile {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
       padding: 20px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 221, 235, 0.3);
     }
 
     .tile::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 221, 235, 0.3), transparent);
-      transition: left 0.5s ease;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 221, 235, 0.3), transparent);
+      transition: transform 0.6s ease;
+      transform: rotate(45deg);
     }
 
     .tile:hover::before {
-      left: 100%;
+      transform: rotate(45deg) scale(1.5);
     }
 
     .tile:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 221, 235, 0.5);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 221, 235, 0.6);
     }
 
     .tile h3 {
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 10px;
+      text-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
     }
 
     .tile p {
-      font-size: 16px;
+      font-size: 14px;
       color: #e0e0e0;
     }
 
     .tile a {
       color: #00ddeb;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       display: inline-block;
       margin-top: 10px;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
 
     .tile a:hover {
       color: #ffffff;
+      transform: scale(1.1);
     }
 
     /* Анимации */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(20px, 20px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(0, 221, 235, 0.7), 0 0 20px rgba(0, 221, 235, 0.4); }
+      to { text-shadow: 0 0 20px rgba(0, 221, 235, 0.9), 0 0 40px rgba(0, 221, 235, 0.6); }
     }
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      50% { transform: scale(1.08); }
       100% { transform: scale(1); }
-    }
-
-    .pulse {
-      animation: pulse 2s infinite;
     }
 
     /* Главная страница */
     #home {
       text-align: center;
-      background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd66d72') no-repeat center/cover;
       position: relative;
-    }
-
-    #home::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(30, 60, 114, 0.6);
-      z-index: 0;
-    }
-
-    #home > * {
-      position: relative;
-      z-index: 1;
     }
 
     #home .cta-button {
       display: inline-block;
-      padding: 15px 30px;
-      background: #00ddeb;
-      color: #1e3c72;
+      padding: 15px 40px;
+      background: linear-gradient(45deg, #00ddeb, #1e90ff);
+      color: #ffffff;
       text-decoration: none;
       border-radius: 50px;
-      font-weight: 600;
+      font-weight: 700;
       margin-top: 20px;
-      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 221, 235, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse 1.5s infinite;
     }
 
     #home .cta-button:hover {
-      background: #ffffff;
       transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0, 221, 235, 0.8);
     }
 
     /* Конфиги */
@@ -229,25 +239,31 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 200px;
+      min-height: 180px;
     }
 
     /* Читы */
     #cheats .tile img {
       width: 100%;
-      height: 150px;
+      height: 120px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 10px;
+      filter: drop-shadow(0 0 10px rgba(0, 221, 235, 0.4));
     }
 
     /* Футер */
     footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
       text-align: center;
-      padding: 20px;
-      background: rgba(30, 60, 114, 0.8);
-      backdrop-filter: blur(10px);
+      padding: 10px;
+      background: rgba(30, 60, 114, 0.7);
+      backdrop-filter: blur(15px);
       color: #e0e0e0;
+      font-size: 14px;
+      z-index: 1000;
     }
 
     /* Адаптивность */
@@ -256,6 +272,7 @@
       nav ul { flex-direction: column; text-align: center; }
       nav ul li { margin: 10px 0; }
       .tile-container { grid-template-columns: 1fr; }
+      section { padding: 20px 10px; }
     }
   </style>
 </head>
@@ -270,56 +287,56 @@
   </nav>
 
   <!-- Главная страница -->
-  <section id="home" class="visible">
+  <section id="home" class="active">
     <h1>FreeClients</h1>
-    <p>Добро пожаловать в FreeClients — лучший Discord-сервер для любителей читов в Minecraft! Присоединяйтесь к нашему сообществу, чтобы получить доступ к эксклюзивным конфигам, читам и поддержке от профессионалов.</p>
-    <a href="https://discord.gg/freeclients" class="cta-button pulse">Присоединиться к Discord</a>
+    <p>Присоединяйтесь к FreeClients — топовому Discord-серверу для фанатов читов в Minecraft! Эксклюзивные конфиги, мощные читы и активное комьюнити ждут вас!</p>
+    <a href="https://dsc.gg/freeclients" class="cta-button">В Discord</a>
   </section>
 
   <!-- Страница с конфигами -->
-  <section id="configs" class="hidden">
+  <section id="configs">
     <h2>Серверные Конфиги</h2>
-    <p>Ознакомьтесь с нашими тщательно настроенными конфигами от создателей FreeClients. Они оптимизированы для лучшей производительности и геймплея.</p>
+    <p>Наши конфиги созданы профессионалами FreeClients для максимальной производительности на любых серверах.</p>
     <div class="tile-container">
       <div class="tile">
-        <h3>Конфиг для Anarchy</h3>
-        <p>Идеально подходит для анархических серверов, таких как 2b2t.</p>
+        <h3>Anarchy Конфиг</h3>
+        <p>Идеален для анархии (2b2t, etc).</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
-        <h3>Конфиг для PvP</h3>
-        <p>Оптимизирован для интенсивных PvP-сражений.</p>
+        <h3>PvP Конфиг</h3>
+        <p>Заточен под PvP-баталии.</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
-        <h3>Конфиг для SkyBlock</h3>
-        <p>Настроен для максимальной эффективности на SkyBlock.</p>
+        <h3>SkyBlock Конфиг</h3>
+        <p>Для SkyBlock-энтузиастов.</p>
         <a href="#">Скачать</a>
       </div>
     </div>
   </section>
 
   <!-- Страница с читами -->
-  <section id="cheats" class="hidden">
+  <section id="cheats">
     <h2>Скачать Читы</h2>
-    <p>Получите доступ к лучшим читам для Minecraft, протестированным и одобренным нашей командой.</p>
+    <p>Лучшие читы для Minecraft, проверенные нашей командой. Качай и доминируй!</p>
     <div class="tile-container">
       <div class="tile">
-        <img src="https://via.placeholder.com/250x150?text=Cheat+1" alt="Cheat 1">
+        <img src="https://via.placeholder.com/220x120?text=Impact" alt="Impact Client">
         <h3>Impact Client</h3>
-        <p>Мощный и универсальный чит-клиент.</p>
+        <p>Мощный и гибкий чит.</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
-        <img src="https://via.placeholder.com/250x150?text=Cheat+2" alt="Cheat 2">
+        <img src="https://via.placeholder.com/220x120?text=Wurst" alt="Wurst Client">
         <h3>Wurst Client</h3>
-        <p>Популярный чит с множеством функций.</p>
+        <p>Популярный выбор игроков.</p>
         <a href="#">Скачать</a>
       </div>
       <div class="tile">
-        <img src="https://via.placeholder.com/250x150?text=Cheat+3" alt="Cheat 3">
+        <img src="https://via.placeholder.com/220x120?text=LiquidBounce" alt="LiquidBounce">
         <h3>LiquidBounce</h3>
-        <p>Легкий и быстрый чит для PvP.</p>
+        <p>Легкий чит для PvP.</p>
         <a href="#">Скачать</a>
       </div>
     </div>
@@ -327,41 +344,79 @@
 
   <!-- Футер -->
   <footer>
-    <p>&copy; 2025 FreeClients. Все права защищены.</p>
+    <p>© 2025 FreeClients. Создано с ❤️ для геймеров.</p>
   </footer>
 
   <!-- JavaScript -->
   <script>
-    // Плавная прокрутка и управление видимостью секций
+    // Управление видимостью секций
     function showSection(sectionId) {
       document.querySelectorAll('section').forEach(section => {
-        section.classList.add('hidden');
-        section.classList.remove('visible');
+        section.classList.remove('active');
       });
       const targetSection = document.getElementById(sectionId);
-      targetSection.classList.remove('hidden');
-      targetSection.classList.add('visible');
-      window.scrollTo({
-        top: targetSection.offsetTop - 80,
-        behavior: 'smooth'
-      });
+      targetSection.classList.add('active');
     }
 
-    // Анимация при загрузке
+    // Анимация плиток при загрузке
     window.addEventListener('load', () => {
       document.querySelectorAll('.tile').forEach((tile, index) => {
         setTimeout(() => {
           tile.style.opacity = '1';
           tile.style.transform = 'translateY(0)';
-        }, index * 200);
+        }, index * 150);
       });
     });
 
-    // Параллакс-эффект для фона
-    window.addEventListener('scroll', () => {
-      const homeSection = document.getElementById('home');
-      const scrollPosition = window.pageYOffset;
-      homeSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+    // Динамическое свечение фона
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '-2';
+    canvas.style.pointerEvents = 'none';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 5 + 2,
+        speedX: (Math.random() - 0.5) * 2,
+        speedY: (Math.random() - 0.5) * 2
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 221, 235, 0.5)';
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = '#00ddeb';
+        ctx.fill();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
   </script>
 </body>
