@@ -494,6 +494,11 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 200px; /* Fixed height for symmetry */
+      min-height: 200px;
     }
 
     .admin-card::before {
@@ -519,18 +524,9 @@
       border-color: rgba(0, 200, 255, 0.5);
     }
 
-    .admin-card .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 10px;
-      border: 2px solid rgba(0, 200, 255, 0.5);
-      box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
-    }
-
     .admin-card h3 {
       font-size: 24px;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       font-weight: 700;
     }
 
@@ -576,12 +572,14 @@
       color: #c0c0c0;
       margin-bottom: 10px;
       line-height: 1.5;
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .admin-card .role {
       font-size: 16px;
       color: #e0e0e0;
-      margin-bottom: 10px;
     }
 
     .admin-card.owner h3 {
@@ -615,7 +613,7 @@
       background: linear-gradient(90deg, #00a2ff, #00f2ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(0, 150,  nécessite: 255, 0.3);
+      text-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
     }
 
     @keyframes float {
@@ -662,8 +660,7 @@
       .modal-video-container { height: 200px; }
       .video-container { height: 120px; }
       #home .discord-button { font-size: 16px; padding: 12px 30px; }
-      .admin-card { max-width: 90%; }
-      .admin-card .avatar { width: 60px; height: 60px; }
+      .admin-card { height: 180px; min-height: 180px; }
     }
   </style>
 </head>
@@ -778,65 +775,59 @@
   </footer>
 
   <script>
-    // Mock Discord API response (replace with real API in production)
+    // Mock Discord API response with translated descriptions and swapped luna.system/whydamn
     const mockDiscordData = [
       {
         id: '1058735953482620958',
         username: 'mqzwqx',
-        avatar: 'a_1234567890abcdef1234567890abcdef',
         status: 'online',
-        about: 'Co-founder of FreeClients, passionate about Minecraft cheating.',
+        about: 'Сооснователь FreeClients, увлечен читами для Minecraft.',
         role: 'Owner',
         profileUrl: 'https://discord.com/users/1058735953482620958'
       },
       {
         id: '670675833421299763',
         username: 'LoliPoop1k',
-        avatar: 'a_abcdef1234567890abcdef1234567890',
         status: 'idle',
-        about: 'Lead developer and server owner, always working on new cheats.',
+        about: 'Ведущий разработчик и владелец сервера, работает над новыми читами.',
         role: 'Owner',
         profileUrl: 'https://discord.com/users/670675833421299763'
       },
       {
-        id: '992948606636134420',
-        username: 'luna.system',
-        avatar: 'a_7890abcdef1234567890abcdef123456',
-        status: 'dnd',
-        about: 'Admin managing community events and moderation.',
-        role: 'Admin',
-        profileUrl: 'https://discord.com/users/992948606636134420'
+        id: '1073209143386705930',
+        username: 'whydamn',
+        status: 'online',
+        about: 'Поддержка сообщества и создатель конфигов.',
+        role: 'Support',
+        profileUrl: 'https://discord.com/users/1073209143386705930'
       },
       {
         id: '1074034819148824637',
         username: 'anarxla',
-        avatar: 'a_4567890abcdef1234567890abcdef123',
         status: 'online',
-        about: 'Support team member helping with user queries.',
+        about: 'Член команды поддержки, помогает с вопросами пользователей.',
         role: 'Support',
         profileUrl: 'https://discord.com/users/1074034819148824637'
       },
       {
         id: '932603097136660500',
         username: 'goodgame073',
-        avatar: 'a_1237890abcdef1234567890abcdef456',
         status: 'offline',
-        about: 'Support specialist for technical issues and cheat setups.',
+        about: 'Специалист поддержки по техническим вопросам и настройке читов.',
         role: 'Support',
         profileUrl: 'https://discord.com/users/932603097136660500'
       },
       {
-        id: '1073209143386705930',
-        username: 'whydamn',
-        avatar: 'a_abcdef78901234567890abcdef123456',
-        status: 'online',
-        about: 'Community support and config creator.',
-        role: 'Support',
-        profileUrl: 'https://discord.com/users/1073209143386705930'
+        id: '992948606636134420',
+        username: 'luna.system',
+        status: 'dnd',
+        about: 'Админ, занимается мероприятиями и модерацией сообщества.',
+        role: 'Admin',
+        profileUrl: 'https://discord.com/users/992948606636134420'
       }
     ];
 
-    // Simulate fetching Discord data (replace with real API call)
+    // Simulate fetching Discord data (replace with real API in production)
     async function fetchDiscordData() {
       // In production, fetch from your backend API, e.g.:
       // const response = await fetch('/api/discord/users');
@@ -871,7 +862,6 @@
         card.className = `admin-card ${admin.role.toLowerCase()}`;
         card.onclick = () => window.location.href = admin.profileUrl;
         card.innerHTML = `
-          <img src="https://cdn.discordapp.com/avatars/${admin.id}/${admin.avatar}.png" alt="${admin.username}'s avatar" class="avatar">
           <h3>${admin.username}</h3>
           <div class="status ${admin.status}">${admin.status.charAt(0).toUpperCase() + admin.status.slice(1)}</div>
           <p class="description">${admin.about}</p>
