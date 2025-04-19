@@ -59,13 +59,11 @@
       background: transparent;
       padding: 15px 0;
       z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     nav ul {
       display: flex;
+      justify-content: center;
       list-style: none;
     }
 
@@ -109,35 +107,6 @@
       width: 100%;
     }
 
-    .profile-button {
-      position: absolute;
-      right: 20px;
-      top: 15px;
-      display: flex;
-      align-items: center;
-      padding: 8px 15px;
-      background: linear-gradient(45deg, #00a2ff, #00f2ff);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 150, 255, 0.4);
-    }
-
-    .profile-button img {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-
-    .profile-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(0, 150, 255, 0.6);
-    }
-
     section {
       position: absolute;
       top: 80px;
@@ -153,7 +122,6 @@
       transform: scale(0.95);
       transition: opacity 0.6s ease, transform 0.6s ease;
       z-index: 1;
-      overflow-y: auto;
     }
 
     section.active {
@@ -195,7 +163,7 @@
       text-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
     }
 
-    .tile-container, .market-container {
+    .tile-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
@@ -204,7 +172,7 @@
       padding: 20px;
     }
 
-    .tile, .market-item {
+    .tile {
       background: rgba(15, 25, 50, 0.4);
       backdrop-filter: blur(15px);
       border-radius: 15px;
@@ -220,7 +188,7 @@
       filter: drop-shadow(0 0 10px rgba(0, 150, 255, 0.2));
     }
 
-    .tile::before, .market-item::before {
+    .tile::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -233,17 +201,17 @@
       z-index: -1;
     }
 
-    .tile:hover::before, .market-item:hover::before {
+    .tile:hover::before {
       transform: rotate(45deg) translateX(100%);
     }
 
-    .tile:hover, .market-item:hover {
+    .tile:hover {
       transform: translateY(-10px) scale(1.03);
       box-shadow: 0 15px 40px rgba(0, 150, 255, 0.4);
       border-color: rgba(0, 200, 255, 0.4);
     }
 
-    .tile h3, .market-item h3 {
+    .tile h3 {
       font-size: 22px;
       margin: 15px 0 10px;
       background: linear-gradient(90deg, #00a2ff, #00f2ff);
@@ -252,14 +220,14 @@
       padding: 0 15px;
     }
 
-    .tile p, .market-item p {
+    .tile p {
       font-size: 14px;
       color: #c0c0c0;
       margin-bottom: 15px;
       padding: 0 15px;
     }
 
-    .video-container, .market-image {
+    .video-container {
       position: relative;
       width: 100%;
       height: 160px;
@@ -273,18 +241,11 @@
       border: none;
     }
 
-    .market-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .tile:hover .video-container iframe, .market-item:hover .market-image img {
+    .tile:hover .video-container iframe {
       transform: scale(1.05);
     }
 
-    .tile .download-btn, .market-item .buy-btn {
+    .tile .download-btn {
       display: inline-block;
       padding: 8px 20px;
       background: linear-gradient(45deg, #00a2ff, #00f2ff);
@@ -298,7 +259,7 @@
       margin: 15px;
     }
 
-    .tile .download-btn:hover, .market-item .buy-btn:hover {
+    .tile .download-btn:hover {
       transform: scale(1.1);
       box-shadow: 0 6px 20px rgba(0, 150, 255, 0.6);
     }
@@ -406,14 +367,14 @@
       line-height: 1.7;
     }
 
-    .modal-features, .modal-payments {
+    .modal-features {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 15px;
     }
 
-    .feature-tag, .payment-option {
+    .feature-tag {
       background: rgba(0, 150, 255, 0.1);
       border: 1px solid rgba(0, 200, 255, 0.3);
       padding: 5px 15px;
@@ -423,17 +384,7 @@
       box-shadow: 0 0 10px rgba(0, 150, 255, 0.2);
     }
 
-    .payment-option {
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .payment-option:hover {
-      background: rgba(0, 150, 255, 0.2);
-      transform: scale(1.05);
-    }
-
-    .modal-download, .modal-buy {
+    .modal-download {
       display: inline-block;
       padding: 12px 30px;
       background: linear-gradient(45deg, #00a2ff, #00f2ff);
@@ -447,7 +398,7 @@
       box-shadow: 0 5px 20px rgba(0, 150, 255, 0.4);
     }
 
-    .modal-download:hover, .modal-buy:hover {
+    .modal-download:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(0, 150, 255, 0.6);
     }
@@ -507,12 +458,12 @@
       height: 24px;
     }
 
-    #cheats, #marketplace {
+    #cheats {
       overflow-y: auto;
       padding-bottom: 100px;
     }
 
-    #admin, #profile {
+    #admin {
       text-align: center;
     }
 
@@ -546,7 +497,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 200px;
+      height: 200px; /* Fixed height for symmetry */
       min-height: 200px;
     }
 
@@ -646,145 +597,6 @@
       text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
     }
 
-    .profile-container {
-      max-width: 600px;
-      width: 100%;
-      padding: 30px;
-      background: linear-gradient(145deg, rgba(15, 25, 50, 0.8), rgba(30, 40, 70, 0.8));
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 150, 255, 0.3);
-      border: 2px solid rgba(0, 200, 255, 0.4);
-      text-align: center;
-      animation: glowButton 1.5s ease-in-out infinite alternate;
-    }
-
-    .profile-container img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      border: 3px solid rgba(0, 200, 255, 0.6);
-      box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
-    }
-
-    .profile-container input[type="file"] {
-      display: none;
-    }
-
-    .profile-container label {
-      display: inline-block;
-      padding: 10px 25px;
-      background: linear-gradient(45deg, #00a2ff, #00f2ff);
-      color: white;
-      border-radius: 50px;
-      cursor: pointer;
-      margin: 10px 0;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 150, 255, 0.4);
-    }
-
-    .profile-container label:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(0, 150, 255, 0.6);
-    }
-
-    .profile-container input[type="text"], .profile-container textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #e0e0e0;
-      font-size: 14px;
-      resize: none;
-    }
-
-    .profile-container button {
-      padding: 12px 30px;
-      background: linear-gradient(45deg, #00a2ff, #00f2ff);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin: 10px 0;
-    }
-
-    .profile-container button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 150, 255, 0.6);
-    }
-
-    .auth-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 400px;
-      width: 100%;
-      padding: 20px;
-      background: linear-gradient(145deg, rgba(15, 25, 50, 0.8), rgba(30, 40, 70, 0.8));
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 150, 255, 0.3);
-      border: 2px solid rgba(0, 200, 255, 0.4);
-    }
-
-    .auth-form input {
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #e0e0e0;
-      font-size: 14px;
-    }
-
-    .auth-form button {
-      padding: 12px;
-      background: linear-gradient(45deg, #00a2ff, #00f2ff);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .auth-form button.google-login {
-      background: linear-gradient(45deg, #db4437, #f28b82);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .auth-form button.google-login svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .auth-form button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 150, 255, 0.6);
-    }
-
-    .auth-form button.google-login:hover {
-      box-shadow: 0 8px 25px rgba(219, 68, 55, 0.6);
-    }
-
-    .captcha-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .captcha-container p {
-      font-size: 14px;
-      color: #e0e0e0;
-    }
-
     footer {
       position: fixed;
       bottom: 0;
@@ -841,33 +653,24 @@
       h1, h2 { font-size: 40px; }
       nav ul li { margin: 0 15px; }
       nav ul li a { font-size: 16px; }
-      .tile-container, .market-container { grid-template-columns: 1fr; }
+      .tile-container { grid-template-columns: 1fr; }
       .admin-container { grid-template-columns: 1fr; }
       section { padding: 20px 10px; }
       .modal-content { width: 95%; padding: 20px; }
       .modal-video-container { height: 200px; }
-      .video-container, .market-image { height: 120px; }
+      .video-container { height: 120px; }
       #home .discord-button { font-size: 16px; padding: 12px 30px; }
       .admin-card { height: 180px; min-height: 180px; }
-      .profile-button { font-size: 12px; padding: 6px 10px; }
-      .profile-button img { width: 20px; height: 20px; }
-      .profile-container { padding: 20px; }
-      .profile-container img { width: 100px; height: 100px; }
     }
   </style>
 </head>
 <body>
   <nav>
     <ul>
-      <li><a href="#home" onclick="showSection('home'); return false;">Главная</a></li>
-      <li><a href="#cheats" onclick="showSection('cheats'); return false;">Читы</a></li>
-      <li><a href="#marketplace" onclick="showSection('marketplace'); return false;">Маркет</a></li>
-      <li><a href="#admin" onclick="showSection('admin'); return false;">Администрация</a></li>
+      <li><a href="#home" onclick="showSection('home')">Главная</a></li>
+      <li><a href="#cheats" onclick="showSection('cheats')">Читы</a></li>
+      <li><a href="#admin" onclick="showSection('admin')">Администрация</a></li>
     </ul>
-    <a href="#profile" class="profile-button" onclick="showSection('profile'); return false;">
-      <img src="https://via.placeholder.com/24" alt="Avatar" id="profileAvatar">
-      <span id="profileUsername">Гость</span>
-    </a>
   </nav>
 
   <section id="home" class="active">
@@ -892,6 +695,7 @@
         <p>Обходы: Matrix, NCP, Grim, Wathcdog</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
+      
       <div class="tile" onclick="openModal('LiquidBounce b100', 'https://youtu.be/41DEz1N9r1I?si=3-oY_8QGLUHq0Ayi', 'Популярный чит с обходами Intave, Polar, Matrix. Версия для 1.8.9', ['Intave', 'Polar', 'Matrix'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/41DEz1N9r1I?autoplay=1&loop=1&mute=1&playlist=41DEz1N9r1I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -900,6 +704,7 @@
         <p>Обходы: Intave, Polar, Matrix</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
+      
       <div class="tile" onclick="openModal('Augustus 2.6', 'https://youtu.be/iH9jKICXNOE?si=Dy_3s1bqltqbuLp5', 'Мощный PvP чит с обходами Intave, Grim, Polar. Версия для 1.8.9', ['Intave', 'Grim', 'Polar'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/iH9jKICXNOE?autoplay=1&loop=1&mute=1&playlist=iH9jKICXNOE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -908,6 +713,7 @@
         <p>Обходы: Intave, Grim, Polar</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
+      
       <div class="tile" onclick="openModal('Rise 6.1.30', 'https://youtu.be/AvZ9lCX7-RI?si=Heft_0U9XuJ901KQ', 'Легендарный чит с обходами Intave, WatchDog, NCP, AAC, Matrix, Vulcan, Verus', ['Intave', 'WatchDog', 'NCP', 'AAC', 'Matrix', 'Vulcan', 'Verus'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/AvZ9lCX7-RI?autoplay=1&loop=1&mute=1&playlist=AvZ9lCX7-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -916,6 +722,7 @@
         <p>Обходы: Intave, WatchDog, NCP, AAC, Matrix, Vulcan, Verus</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
+      
       <div class="tile" onclick="openModal('Breeze 1.01', 'https://youtu.be/BKPEwFLTaNA?si=5B6ZQGuIcd9X4Rqc', 'Легитный чит для скрытого читинга. Версия для 1.8.9', ['Intave', 'NCP', 'AAC'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BKPEwFLTaNA?autoplay=1&loop=1&mute=1&playlist=BKPEwFLTaNA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -924,6 +731,7 @@
         <p>Обходы: Intave, NCP, AAC</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
+      
       <div class="tile" onclick="openModal('Eject Client', 'https://youtu.be/t9R7mi_hoOA?si=o0nWSCvE4D3U1i83', 'Инжект клиент с обходами Intave, Grim. Версия для 1.8.9', ['Intave', 'Grim'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/t9R7mi_hoOA?autoplay=1&loop=1&mute=1&playlist=t9R7mi_hoOA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -935,40 +743,6 @@
     </div>
   </section>
 
-  <section id="marketplace">
-    <h2>Маркет</h2>
-    <p>Приобретайте премиум конфиги для ваших любимых читов</p>
-    <div class="market-container">
-      <div class="market-item" onclick="openMarketModal('Raven XD Config', 'Оптимизированная конфигурация для Raven XD 3.0.1 с максимальной производительностью.', ['Matrix Bypass', 'High CPS', 'Silent Aimbot'], 9.99, ['https://funpay.com', 'https://boosty.to', 'https://paypal.com', 'crypto'])">
-        <div class="market-image">
-          <img src="https://via.placeholder.com/280x160?text=Raven+XD" alt="Raven XD Config">
-        </div>
-        <h3>Raven XD Config</h3>
-        <p>Цена: $9.99</p>
-        <p>Оптимизированная конфигурация для Raven XD</p>
-        <a href="#" class="buy-btn" onclick="event.stopPropagation()">Купить</a>
-      </div>
-      <div class="market-item" onclick="openMarketModal('LiquidBounce Config', 'Профессиональная настройка для LiquidBounce b100 с легитными функциями.', ['Intave Bypass', 'Smooth Aim', 'Legit Scaffold'], 7.99, ['https://funpay.com', 'https://boosty.to', 'https://paypal.com', 'crypto'])">
-        <div class="market-image">
-          <img src="https://via.placeholder.com/280x160?text=LiquidBounce" alt="LiquidBounce Config">
-        </div>
-        <h3>LiquidBounce Config</h3>
-        <p>Цена: $7.99</p>
-        <p>Профессиональная настройка для LiquidBounce</p>
-        <a href="#" class="buy-btn" onclick="event.stopPropagation()">Купить</a>
-      </div>
-      <div class="market-item" onclick="openMarketModal('Rise 6.1.30 Config', 'Эксклюзивная конфигурация для Rise 6.1.30 с топовыми обходами.', ['Vulcan Bypass', 'KillAura+', 'AntiKB'], 12.99, ['https://funpay.com', 'https://boosty.to', 'https://paypal.com', 'crypto'])">
-        <div class="market-image">
-          <img src="https://via.placeholder.com/280x160?text=Rise" alt="Rise Config">
-        </div>
-        <h3>Rise 6.1.30 Config</h3>
-        <p>Цена: $12.99</p>
-        <p>Эксклюзивная конфигурация для Rise</p>
-        <a href="#" class="buy-btn" onclick="event.stopPropagation()">Купить</a>
-      </div>
-    </div>
-  </section>
-
   <section id="admin">
     <h2>Администрация</h2>
     <p>Наша команда администрации сервера FreeClients</p>
@@ -976,50 +750,6 @@
       <div class="admin-column" id="column1"></div>
       <div class="admin-column" id="column2"></div>
       <div class="admin-column" id="column3"></div>
-    </div>
-  </section>
-
-  <section id="profile">
-    <h2>Профиль</h2>
-    <div class="profile-container" id="profileContainer">
-      <div id="authSection">
-        <div class="auth-form" id="loginForm">
-          <h3>Вход</h3>
-          <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
-          <input type="password" id="loginPassword" placeholder="Пароль" required>
-          <button onclick="login()">Войти</button>
-          <button class="google-login" onclick="googleLogin()">
-            <svg viewBox="0 0 24 24"><path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.854L12.545,10.239z"/></svg>
-            Войти через Google
-          </button>
-          <p>Нет аккаунта? <a href="#" onclick="showRegisterForm()">Зарегистрироваться</a></p>
-        </div>
-        <div class="auth-form" id="registerForm" style="display: none;">
-          <h3>Регистрация</h3>
-          <input type="text" id="regUsername" placeholder="Имя пользователя" required>
-          <input type="password" id="regPassword" placeholder="Пароль" required>
-          <div class="captcha-container">
-            <p id="captchaQuestion"></p>
-            <input type="text" id="captchaAnswer" placeholder="Ответ" required>
-          </div>
-          <button onclick="register()">Зарегистрироваться</button>
-          <button class="google-login" onclick="googleLogin()">
-            <svg viewBox="0 0 24 24"><path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.854L12.545,10.239z"/></svg>
-            Регистрация через Google
-          </button>
-          <p>Уже есть аккаунт? <a href="#" onclick="showLoginForm()">Войти</a></p>
-        </div>
-      </div>
-      <div id="profileSection" style="display: none;">
-        <img src="https://via.placeholder.com/120" alt="Avatar" id="profileImage">
-        <input type="file" id="avatarInput" accept="image/*">
-        <label for="avatarInput">Сменить аватар</label>
-        <h3 id="profileName"></h3>
-        <input type="text" id="profileBio" placeholder="О себе" maxlength="100">
-        <input type="text" id="profileGame" placeholder="Любимая игра" maxlength="50">
-        <button onclick="saveProfile()">Сохранить</button>
-        <button onclick="logout()">Выйти</button>
-      </div>
     </div>
   </section>
 
@@ -1040,27 +770,12 @@
     </div>
   </div>
 
-  <div class="modal" id="marketModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="marketModalTitle">Название конфига</h3>
-        <button class="close-modal" onclick="closeMarketModal()">×</button>
-      </div>
-      <div class="modal-body">
-        <p class="modal-description" id="marketModalDescription">Описание конфига будет здесь</p>
-        <p>Цена: $<span id="marketModalPrice"></span></p>
-        <div class="modal-features" id="marketModalFeatures"></div>
-        <div class="modal-payments" id="marketModalPayments"></div>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <p>© 2025 FreeClients. Все права защищены.</p>
   </footer>
 
   <script>
-    // Mock Discord API response
+    // Mock Discord API response with translated descriptions and swapped luna.system/whydamn
     const mockDiscordData = [
       {
         id: '1058735953482620958',
@@ -1112,178 +827,11 @@
       }
     ];
 
-    // Mock user database
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-
-    // Update profile button
-    function updateProfileButton() {
-      const profileAvatar = document.getElementById('profileAvatar');
-      const profileUsername = document.getElementById('profileUsername');
-      if (currentUser) {
-        profileAvatar.src = currentUser.avatar || 'https://via.placeholder.com/24';
-        profileUsername.textContent = currentUser.username;
-      } else {
-        profileAvatar.src = 'https://via.placeholder.com/24';
-        profileUsername.textContent = 'Гость';
-      }
-    }
-
-    // Show login or register form
-    function showLoginForm() {
-      document.getElementById('loginForm').style.display = 'block';
-      document.getElementById('registerForm').style.display = 'none';
-    }
-
-    function showRegisterForm() {
-      document.getElementById('loginForm').style.display = 'none';
-      document.getElementById('registerForm').style.display = 'block';
-      generateCaptcha();
-    }
-
-    // Generate CAPTCHA
-    let captchaAnswer = 0;
-    function generateCaptcha() {
-      const num1 = Math.floor(Math.random() * 10) + 1;
-      const num2 = Math.floor(Math.random() * 10) + 1;
-      captchaAnswer = num1 + num2;
-      document.getElementById('captchaQuestion').textContent = `Сколько будет ${num1} + ${num2}?`;
-    }
-
-    // Register user
-    function register() {
-      const username = document.getElementById('regUsername').value.trim();
-      const password = document.getElementById('regPassword').value;
-      const captchaInput = document.getElementById('captchaAnswer').value;
-
-      if (!username || !password || !captchaInput) {
-        alert('Заполните все поля!');
-        return;
-      }
-
-      if (parseInt(captchaInput) !== captchaAnswer) {
-        alert('Неверный ответ на капчу!');
-        generateCaptcha();
-        document.getElementById('captchaAnswer').value = '';
-        return;
-      }
-
-      if (users.find(u => u.username === username)) {
-        alert('Пользователь с таким именем уже существует!');
-        return;
-      }
-
-      const newUser = { 
-        username, 
-        password, 
-        avatar: 'https://via.placeholder.com/120',
-        bio: '',
-        favoriteGame: ''
-      };
-      users.push(newUser);
-      localStorage.setItem('users', JSON.stringify(users));
-      currentUser = newUser;
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      updateProfile();
-      alert('Регистрация успешна!');
-    }
-
-    // Login user
-    function login() {
-      const username = document.getElementById('loginUsername').value.trim();
-      const password = document.getElementById('loginPassword').value;
-
-      const user = users.find(u => u.username === username && u.password === password);
-      if (user) {
-        currentUser = user;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        updateProfile();
-        alert('Вход выполнен!');
-      } else {
-        alert('Неверное имя пользователя или пароль!');
-      }
-    }
-
-    // Google login (mock)
-    function googleLogin() {
-      // In production, implement Google OAuth with backend
-      const mockGoogleUser = {
-        username: `GoogleUser_${Math.random().toString(36).substr(2, 9)}`,
-        avatar: 'https://via.placeholder.com/120',
-        bio: '',
-        favoriteGame: ''
-      };
-      users = users.filter(u => !u.username.startsWith('GoogleUser_'));
-      users.push(mockGoogleUser);
-      localStorage.setItem('users', JSON.stringify(users));
-      currentUser = mockGoogleUser;
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      updateProfile();
-      alert('Вход через Google выполнен (симуляция)!');
-    }
-
-    // Logout user
-    function logout() {
-      currentUser = null;
-      localStorage.removeItem('currentUser');
-      updateProfile();
-      alert('Вы вышли из аккаунта!');
-    }
-
-    // Update profile section
-    function updateProfile() {
-      const authSection = document.getElementById('authSection');
-      const profileSection = document.getElementById('profileSection');
-      const profileImage = document.getElementById('profileImage');
-      const profileName = document.getElementById('profileName');
-      const profileBio = document.getElementById('profileBio');
-      const profileGame = document.getElementById('profileGame');
-
-      if (currentUser) {
-        authSection.style.display = 'none';
-        profileSection.style.display = 'block';
-        profileImage.src = currentUser.avatar;
-        profileName.textContent = currentUser.username;
-        profileBio.value = currentUser.bio || '';
-        profileGame.value = currentUser.favoriteGame || '';
-      } else {
-        authSection.style.display = 'block';
-        profileSection.style.display = 'none';
-        showLoginForm();
-      }
-      updateProfileButton();
-    }
-
-    // Save profile changes
-    function saveProfile() {
-      const bio = document.getElementById('profileBio').value;
-      const favoriteGame = document.getElementById('profileGame').value;
-      currentUser.bio = bio;
-      currentUser.favoriteGame = favoriteGame;
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      users = users.map(u => u.username === currentUser.username ? currentUser : u);
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('Профиль сохранен!');
-    }
-
-    // Handle avatar change
-    document.getElementById('avatarInput').addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          currentUser.avatar = reader.result;
-          localStorage.setItem('currentUser', JSON.stringify(currentUser));
-          users = users.map(u => u.username === currentUser.username ? currentUser : u);
-          localStorage.setItem('users', JSON.stringify(users));
-          updateProfile();
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Simulate fetching Discord data
+    // Simulate fetching Discord data (replace with real API in production)
     async function fetchDiscordData() {
+      // In production, fetch from your backend API, e.g.:
+      // const response = await fetch('/api/discord/users');
+      // return await response.json();
       return new Promise(resolve => {
         setTimeout(() => resolve(mockDiscordData), 1000);
       });
@@ -1291,19 +839,22 @@
 
     // Simulate fetching status updates
     async function fetchStatusUpdates() {
+      // In production, fetch updated statuses from your backend
+      // This mock randomly changes statuses for demonstration
       return mockDiscordData.map(admin => ({
         ...admin,
         status: ['online', 'idle', 'dnd', 'offline'][Math.floor(Math.random() * 4)]
       }));
     }
 
-    // Populate admin cards
+    // Populate admin cards in a 3-column grid
     async function populateAdminCards() {
       const data = await fetchDiscordData();
       const column1 = document.getElementById('column1');
       const column2 = document.getElementById('column2');
       const column3 = document.getElementById('column3');
 
+      // Distribute admins: 2 per column
       const columns = [column1, column2, column3];
       data.forEach((admin, index) => {
         const column = columns[Math.floor(index / 2)];
@@ -1338,23 +889,18 @@
     function showSection(sectionId) {
       document.querySelectorAll('section').forEach(section => {
         section.classList.remove('active');
-        section.style.display = 'none';
       });
       const targetSection = document.getElementById(sectionId);
-      targetSection.style.display = 'flex';
-      setTimeout(() => {
-        targetSection.classList.add('active');
-      }, 10);
-
-      if (sectionId === 'cheats' || sectionId === 'marketplace') {
-        const items = sectionId === 'cheats' ? document.querySelectorAll('.tile') : document.querySelectorAll('.market-item');
-        items.forEach((item, index) => {
-          item.style.opacity = '0';
-          item.style.transform = 'translateY(20px)';
+      targetSection.classList.add('active');
+      
+      if (sectionId === 'cheats') {
+        document.querySelectorAll('.tile').forEach((tile, index) => {
+          tile.style.opacity = '0';
+          tile.style.transform = 'translateY(20px)';
           setTimeout(() => {
-            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
+            tile.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            tile.style.opacity = '1';
+            tile.style.transform = 'translateY(0)';
           }, index * 100);
         });
       } else if (sectionId === 'admin') {
@@ -1367,13 +913,14 @@
             card.style.transform = 'translateY(0)';
           }, index * 100);
         });
-      } else if (sectionId === 'profile') {
-        updateProfile();
       }
     }
 
     function openModal(title, videoUrl, description, features, downloadLink) {
-      if (!document.getElementById('cheats').classList.contains('active')) return;
+      const cheatsSection = document.getElementById('cheats');
+      if (!cheatsSection.classList.contains('active')) {
+        return;
+      }
 
       const modal = document.getElementById('cheatModal');
       document.getElementById('modalTitle').textContent = title;
@@ -1403,58 +950,9 @@
       document.body.style.overflow = '';
     }
 
-    function openMarketModal(title, description, features, price, paymentLinks) {
-      if (!document.getElementById('marketplace').classList.contains('active')) return;
-
-      const modal = document.getElementById('marketModal');
-      document.getElementById('marketModalTitle').textContent = title;
-      document.getElementById('marketModalDescription').textContent = description;
-      document.getElementById('marketModalPrice').textContent = price.toFixed(2);
-      
-      const featuresContainer = document.getElementById('marketModalFeatures');
-      featuresContainer.innerHTML = '';
-      features.forEach(feature => {
-        const tag = document.createElement('span');
-        tag.className = 'feature-tag';
-        tag.textContent = feature;
-        featuresContainer.appendChild(tag);
-      });
-      
-      const paymentsContainer = document.getElementById('marketModalPayments');
-      paymentsContainer.innerHTML = '';
-      paymentLinks.forEach(link => {
-        const option = document.createElement('span');
-        option.className = 'payment-option';
-        if (link === 'crypto') {
-          option.textContent = 'Криптовалюта';
-          option.onclick = () => {
-            const cryptoAddress = prompt('Пожалуйста, укажите адрес для оплаты криптовалютой:');
-            if (cryptoAddress) {
-              alert(`Оплатите на адрес: ${cryptoAddress}`);
-            }
-          };
-        } else {
-          option.textContent = link.split('.')[1].charAt(0).toUpperCase() + link.split('.')[1].slice(1);
-          option.onclick = () => window.open(link, '_blank');
-        }
-        paymentsContainer.appendChild(option);
-      });
-      
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMarketModal() {
-      const modal = document.getElementById('marketModal');
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
     window.addEventListener('click', (e) => {
       if (e.target === document.getElementById('cheatModal')) {
         closeModal();
-      } else if (e.target === document.getElementById('marketModal')) {
-        closeMarketModal();
       }
     });
 
@@ -1479,13 +977,12 @@
     window.addEventListener('load', () => {
       createStars();
       populateAdminCards();
+      // Update statuses every 30 seconds
       setInterval(updateStatuses, 30000);
-      updateProfile();
-      showSection('home');
       
       document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
-          if (link.classList.contains('download-btn') || link.classList.contains('modal-download') || link.classList.contains('discord-button') || link.classList.contains('buy-btn')) {
+          if (link.classList.contains('download-btn') || link.classList.contains('modal-download') || link.classList.contains('discord-button')) {
             e.stopPropagation();
           }
         });
