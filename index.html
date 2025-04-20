@@ -182,13 +182,16 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(0, 150, 255, 0.2);
-      transition: all 0.4s ease;
-      cursor: pointer;
       border: 1px solid rgba(0, 200, 255, 0.2);
       z-index: 1;
       filter: drop-shadow(0 0 10px rgba(0, 150, 255, 0.2));
+      display: flex;
+      flex-direction: column;
+      min-height: 320px; /* Fixed height for consistent button alignment */
+      cursor: pointer;
     }
 
+    /* Removed hover animations for tiles */
     .tile::before {
       content: '';
       position: absolute;
@@ -197,19 +200,8 @@
       width: 200%;
       height: 200%;
       background: linear-gradient(45deg, transparent, rgba(0, 200, 255, 0.1), transparent);
-      transition: transform 0.8s ease;
       transform: rotate(45deg);
       z-index: -1;
-    }
-
-    .tile:hover::before {
-      transform: rotate(45deg) translateX(100%);
-    }
-
-    .tile:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 15px 40px rgba(0, 150, 255, 0.4);
-      border-color: rgba(0, 200, 255, 0.4);
     }
 
     .tile h3 {
@@ -226,6 +218,7 @@
       color: #c0c0c0;
       margin-bottom: 15px;
       padding: 0 15px;
+      flex-grow: 1; /* Push button to bottom */
     }
 
     .video-container {
@@ -245,27 +238,59 @@
       border: none;
     }
 
-    .tile:hover .video-container iframe {
-      transform: scale(1.05);
-    }
-
-    .tile .download-btn {
-      display: inline-block;
-      padding: 8px 20px;
+    /* Unified button styling */
+    .symmetric-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 30px;
       background: linear-gradient(45deg, #00a2ff, #00f2ff);
       color: white;
       text-decoration: none;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 16px;
+      width: 200px;
+      text-align: center;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0, 150, 255, 0.4);
-      margin: 15px;
+      margin: 15px auto;
+      border: 2px solid transparent;
+      cursor: pointer;
     }
 
-    .tile .download-btn:hover {
-      transform: scale(1.1);
+    .symmetric-btn:hover {
+      transform: scale(1.05);
       box-shadow: 0 6px 20px rgba(0, 150, 255, 0.6);
+      border-color: rgba(0, 200, 255, 0.5);
+    }
+
+    .symmetric-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: 0.5s;
+      z-index: -1;
+    }
+
+    .symmetric-btn:hover::before {
+      left: 100%;
+    }
+
+    #home .discord-button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home .discord-button svg {
+      margin-right: 10px;
+      fill: #ffffff;
+      width: 24px;
+      height: 24px;
     }
 
     .modal {
@@ -387,80 +412,6 @@
       box-shadow: 0 0 10px rgba(0, 150, 255, 0.2);
     }
 
-    .modal-download {
-      display: inline-block;
-      padding: 12px 30px;
-      background: linear-gradient(45deg, #00a2ff, #00f2ff);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      text-align: center;
-      margin-top: 20px;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(0, 150, 255, 0.4);
-    }
-
-    .modal-download:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 150, 255, 0.6);
-    }
-
-    #home {
-      text-align: center;
-      position: relative;
-    }
-
-    #home .discord-button {
-      display: inline-flex;
-      align-items: center;
-      padding: 15px 40px;
-      background: linear-gradient(45deg, #7289da, #00f2ff);
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 18px;
-      margin-top: 30px;
-      box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5), 0 0 20px rgba(114, 137, 218, 0.7);
-      transition: all 0.3s ease;
-      animation: glowButton 1.5s ease-in-out infinite alternate;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      border: 2px solid #7289da;
-      cursor: pointer;
-    }
-
-    #home .discord-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: 0.5s;
-      z-index: -1;
-    }
-
-    #home .discord-button:hover::before {
-      left: 100%;
-    }
-
-    #home .discord-button:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 10px 30px rgba(0, 150, 255, 0.7), 0 0 30px rgba(114, 137, 218, 0.9);
-      background: linear-gradient(45deg, #00a2ff, #7289da);
-    }
-
-    #home .discord-button svg {
-      margin-right: 10px;
-      fill: #ffffff;
-      width: 24px;
-      height: 24px;
-    }
-
     #cheats {
       overflow-y: auto;
       padding-bottom: 100px;
@@ -498,9 +449,7 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 250px;
-      min-height: 250px;
+      min-height: 250px; /* Fixed height for consistent button alignment */
       margin-bottom: 20px;
     }
 
@@ -531,6 +480,10 @@
       font-size: 24px;
       margin-bottom: 10px;
       font-weight: 700;
+    }
+
+    .partner-card p.description {
+      flex-grow: 1; /* Push button to bottom */
     }
 
     .admin-card .status {
@@ -575,7 +528,6 @@
       color: #c0c0c0;
       margin-bottom: 10px;
       line-height: 1.5;
-      flex-grow: 1;
       overflow: visible;
       white-space: normal;
       text-align: center;
@@ -599,25 +551,6 @@
     .admin-card.admin h3 {
       color: #ff4d4d;
       text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
-    }
-
-    .partner-card .join-btn, .partner-card .apply-btn {
-      display: inline-block;
-      padding: 8px 20px;
-      background: linear-gradient(45deg, #7289da, #00f2ff);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 150, 255, 0.4);
-      margin-top: 10px;
-    }
-
-    .partner-card .join-btn:hover, .partner-card .apply-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(0, 150, 255, 0.6);
     }
 
     footer {
@@ -656,11 +589,6 @@
       to { text-shadow: 0 0 20px rgba(0, 150, 255, 0.9), 0 0 40px rgba(0, 150, 255, 0.6); }
     }
 
-    @keyframes glowButton {
-      from { box-shadow: 0 5px 25px rgba(0, 150, 255, 0.5), 0 0 20px rgba(114, 137, 218, 0.7); }
-      to { box-shadow: 0 7px 30px rgba(0, 150, 255, 0.7), 0 0 30px rgba(114, 137, 218, 0.9); }
-    }
-
     @keyframes modalAppear {
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -682,8 +610,8 @@
       .modal-content { width: 95%; padding: 20px; }
       .modal-video-container { height: 200px; }
       .video-container { padding-top: 56.25%; }
-      #home .discord-button { font-size: 16px; padding: 12px 30px; }
-      .admin-card, .partner-card { height: 220px; min-height: 220px; }
+      .symmetric-btn { font-size: 14px; padding: 10px 20px; width: 180px; }
+      .tile, .partner-card { min-height: 300px; }
       #admin { padding: 30px 15px; }
       .admin-container { gap: 30px; }
       .admin-card { margin-bottom: 15px; }
@@ -704,7 +632,7 @@
     <h1>FreeClients</h1>
     <p>Добро пожаловать на лучший Discord-сервер для читеров Minecraft! Присоединяйся к нашему дружелюбному комьюнити, где ты найдешь топовые читы, мощные обходы античитов и эксклюзивные конфиги для любых клиентов. Участвуй в регулярных розыгрышах, получай уникальные темы и настройки для читов на любой вкус и цвет!</p>
     <p>На нашем сервере ты всегда будешь в курсе последних обновлений, получишь поддержку от опытных игроков и сможешь доминировать на любом сервере Minecraft. Не упусти шанс стать частью нашей команды!</p>
-    <a href="https://dsc.gg/freeclients" class="discord-button">
+    <a href="https://dsc.gg/freeclients" class="symmetric-btn discord-button">
       <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.433-.4269.9148-.6508 1.4037a18.3371 18.3371 0 00-5.4636 0c-.2239-.4889-.4388-.9707-.6508-1.4037a.0746.0746 0 00-.0785-.0371 19.7361 19.7361 0 00-4.8851 1.5152.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9744 19.9744 0 005.9933 3.0307.077.077 0 00.0843-.0286c.4618-.6307.8749-1.2952 1.2263-1.9772a.076.076 0 00-.0419-.1057c-.6521-.2474-1.2743-.5489-1.8721-.8923a.0772.0772 0 01-.0076-.1277c.1258-.094.2192-.2012.3128-.2944a13.9973 13.9973 0 003.5339 1.1013 14.0286 14.0286 0 003.5319-1.1013c.0936.0932.187.1996.3128.2944a.0772.0772 0 01-.0076.1277c-.5978.3434-1.22.6449-1.8721.8923a.076.076 0 00-.0419.1057c.3514.682 1.2263 1.9772 1.2263 1.9772a.077.077 0 00.0843.0286 19.9744 19.9744 0 005.9933-3.0307.0824.0824 0 00.0312-.0561c.5007-4.4799-.3532-9.0139-3.8685-13.6881a.0699.0699 0 00-.0321-.0277zM8.02 15.3312c-.716 0-1.3023-.586-1.3023-1.3072 0-.7212.5863-1.3072 1.3023-1.3072.7212 0 1.3072.586 1.3072 1.3072 0 .7212-.586 1.3072-1.3072 1.3072zm7.956 0c-.716 0-1.3023-.586-1.3023-1.3072 0-.7212.5863-1.3072 1.3023-1.3072.7212 0 1.3072.586 1.3072 1.3072 0 .7212-.586 1.3072-1.3072 1.3072z"/></svg>
       Присоединиться в Discord
     </a>
@@ -720,7 +648,7 @@
         </div>
         <h3>Raven XD 3.0.1</h3>
         <p>Обходы: Matrix, NCP, Grim, Wathcdog</p>
-        <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
+        <a href="https://discord.com/invite/X6hg2MKr2J" class="symmetric-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
       <div class="tile" onclick="openModal('Breeze 1.01', 'https://youtu.be/BKPEwFLTaNA?si=5B6ZQGuIcd9X4Rqc', 'Легитный чит для скрытого читинга. Версия для 1.8.9', ['Intave', 'NCP', 'AAC'], 'https://dsc.gg/freeclients')">
@@ -729,7 +657,7 @@
         </div>
         <h3>Breeze 1.01</h3>
         <p>Обходы: Intave, NCP, AAC</p>
-        <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
+        <a href="https://discord.com/invite/X6hg2MKr2J" class="symmetric-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
       <div class="tile" onclick="openModal('Augustus 2.6', 'https://youtu.be/iH9jKICXNOE?si=Dy_3s1bqltqbuLp5', 'Мощный PvP чит с обходами Intave, Grim, Polar. Версия для 1.8.9', ['Intave', 'Grim', 'Polar'], 'https://dsc.gg/freeclients')">
@@ -738,7 +666,7 @@
         </div>
         <h3>Augustus 2.6</h3>
         <p>Обходы: Intave, Grim, Polar</p>
-        <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
+        <a href="https://discord.com/invite/X6hg2MKr2J" class="symmetric-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
       <div class="tile" onclick="openModal('Rise 6.1.30', 'https://youtu.be/AvZ9lCX7-RI?si=Heft_0U9XuJ901KQ', 'Легендарный чит с обходами Intave, WatchDog, NCP, AAC, Matrix, Vulcan, Verus', ['Intave', 'WatchDog', 'NCP', 'AAC', 'Matrix', 'Vulcan', 'Verus'], 'https://dsc.gg/freeclients')">
@@ -747,7 +675,7 @@
         </div>
         <h3>Rise 6.1.30</h3>
         <p>Обходы: Intave, WatchDog, NCP, AAC, Matrix, Vulcan, Verus</p>
-        <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
+        <a href="https://discord.com/invite/X6hg2MKr2J" class="symmetric-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
       <div class="tile" onclick="openModal('LiquidBounce b100', 'https://youtu.be/41DEz1N9r1I?si=3-oY_8QGLUHq0Ayi', 'Популярный чит с обходами Intave, Polar, Matrix. Версия для 1.8.9', ['Intave', 'Polar', 'Matrix'], 'https://dsc.gg/freeclients')">
@@ -756,7 +684,7 @@
         </div>
         <h3>LiquidBounce b100</h3>
         <p>Обходы: Intave, Polar, Matrix</p>
-        <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
+        <a href="https://discord.com/invite/X6hg2MKr2J" class="symmetric-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
       <div class="tile" onclick="openModal('Eject Client', 'https://youtu.be/t9R7mi_hoOA?si=o0nWSCvE4D3U1i83', 'Инжект клиент с обходами Intave, Grim. Версия для 1.8.9', ['Intave', 'Grim'], 'https://dsc.gg/freeclients')">
@@ -765,7 +693,7 @@
         </div>
         <h3>Eject Client</h3>
         <p>Обходы: Intave, Grim</p>
-        <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
+        <a href="https://discord.com/invite/X6hg2MKr2J" class="symmetric-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
     </div>
   </section>
@@ -787,17 +715,17 @@
       <div class="partner-card">
         <h3>BestHackers</h3>
         <p class="description">BestHackers — сообщество профессиональных читеров, возглавляемое EazyHacker. Присоединяйтесь, чтобы узнать о новейших читах и тактиках для Minecraft!</p>
-        <a href="https://discord.gg/QzjRhre9Au" class="join-btn">Присоединиться</a>
+        <a href="https://discord.gg/QzjRhre9Au" class="symmetric-btn">Присоединиться</a>
       </div>
       <div class="partner-card">
         <h3>Здесь мог быть ты</h3>
         <p class="description">Стань частью нашего сообщества! Подай заявку и делись опытом с лучшими читерами Minecraft.</p>
-        <a href="https://dsc.gg/freeclients" class="apply-btn">Подать заявку</a>
+        <a href="https://dsc.gg/freeclients" class="symmetric-btn">Подать заявку</a>
       </div>
       <div class="partner-card">
         <h3>Здесь мог быть ты</h3>
         <p class="description">Стань частью нашего сообщества! Подай заявку и делись опытом с лучшими читерами Minecraft.</p>
-        <a href="https://dsc.gg/freeclients" class="apply-btn">Подать заявку</a>
+        <a href="https://dsc.gg/freeclients" class="symmetric-btn">Подать заявку</a>
       </div>
     </div>
   </section>
@@ -814,7 +742,7 @@
         </div>
         <p class="modal-description" id="modalDescription">Описание чита будет здесь</p>
         <div class="modal-features" id="modalFeatures"></div>
-        <a href="#" class="modal-download" id="modalDownloadLink">Скачать</a>
+        <a href="#" class="symmetric-btn" id="modalDownloadLink">Скачать</a>
       </div>
     </div>
   </div>
@@ -824,6 +752,7 @@
   </footer>
 
   <script>
+    // Mock data for admin cards
     const mockDiscordData = [
       {
         id: '1058735953482620958',
@@ -875,12 +804,14 @@
       }
     ];
 
+    // Simulate fetching Discord data
     async function fetchDiscordData() {
       return new Promise(resolve => {
         setTimeout(() => resolve(mockDiscordData), 1000);
       });
     }
 
+    // Simulate status updates
     async function fetchStatusUpdates() {
       return mockDiscordData.map(admin => ({
         ...admin,
@@ -888,154 +819,172 @@
       }));
     }
 
+    // Populate admin cards
     async function populateAdminCards() {
-      const data = await fetchDiscordData();
-      const column1 = document.getElementById('column1');
-      const column2 = document.getElementById('column2');
-      const column3 = document.getElementById('column3');
+      try {
+        const data = await fetchDiscordData();
+        const column1 = document.getElementById('column1');
+        const column2 = document.getElementById('column2');
+        const column3 = document.getElementById('column3');
 
-      const columns = [column1, column2, column3];
-      data.forEach((admin, index) => {
-        const column = columns[Math.floor(index / 2)];
-        const card = document.createElement('div');
-        card.className = `admin-card ${admin.role.toLowerCase()}`;
-        card.onclick = () => window.location.href = admin.profileUrl;
-        card.innerHTML = `
-          <h3>${admin.username}</h3>
-          <div class="status ${admin.status}">${admin.status.charAt(0).toUpperCase() + admin.status.slice(1)}</div>
-          <p class="description">${admin.about}</p>
-          <p class="role">${admin.role}</p>
-        `;
-        column.appendChild(card);
-      });
-    }
-
-    async function updateStatuses() {
-      const data = await fetchStatusUpdates();
-      const cards = document.querySelectorAll('.admin-card');
-      cards.forEach(card => {
-        const username = card.querySelector('h3').textContent;
-        const admin = data.find(a => a.username === username);
-        if (admin) {
-          const statusDiv = card.querySelector('.status');
-          statusDiv.className = `status ${admin.status}`;
-          statusDiv.textContent = admin.status.charAt(0).toUpperCase() + admin.status.slice(1);
-        }
-      });
-    }
-
-    function showSection(sectionId) {
-      document.querySelectorAll('section').forEach(section => {
-        section.classList.remove('active');
-      });
-      const targetSection = document.getElementById(sectionId);
-      targetSection.classList.add('active');
-      
-      if (sectionId === 'cheats') {
-        document.querySelectorAll('.tile').forEach((tile, index) => {
-          tile.style.opacity = '0';
-          tile.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            tile.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            tile.style.opacity = '1';
-            tile.style.transform = 'translateY(0)';
-          }, index * 100);
-        });
-      } else if (sectionId === 'admin') {
-        document.querySelectorAll('.admin-card').forEach((card, index) => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, index * 100);
-        });
-      } else if (sectionId === 'partners') {
-        document.querySelectorAll('.partner-card').forEach((card, index) => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, index * 100);
-        });
-      }
-    }
-
-    function openModal(title, videoUrl, description, features, downloadLink) {
-      const cheatsSection = document.getElementById('cheats');
-      if (!cheatsSection.classList.contains('active')) {
-        return;
-      }
-
-      const modal = document.getElementById('cheatModal');
-      document.getElementById('modalTitle').textContent = title;
-      const videoId = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/)[1];
-      document.getElementById('modalVideo').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}`;
-      document.getElementById('modalDescription').textContent = description;
-      
-      const featuresContainer = document.getElementById('modalFeatures');
-      featuresContainer.innerHTML = '';
-      features.forEach(feature => {
-        const tag = document.createElement('span');
-        tag.className = 'feature-tag';
-        tag.textContent = feature;
-        featuresContainer.appendChild(tag);
-      });
-      
-      document.getElementById('modalDownloadLink').href = downloadLink;
-      
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('cheatModal');
-      modal.classList.remove('active');
-      document.getElementById('modalVideo').src = '';
-      document.body.style.overflow = '';
-    }
-
-    window.addEventListener('click', (e) => {
-      if (e.target === document.getElementById('cheatModal')) {
-        closeModal();
-      }
-    });
-
-    function createStars() {
-      const container = document.body;
-      for (let i = 0; i < 50; i++) {
-        const star = document.createElement('div');
-        star.style.position = 'fixed';
-        star.style.width = Math.random() * 3 + 1 + 'px';
-        star.style.height = star.style.width;
-        star.style.backgroundColor = 'white';
-        star.style.borderRadius = '50%';
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.top = Math.random() * 100 + 'vh';
-        star.style.opacity = '0';
-        star.style.animation = `starPulse ${Math.random() * 3 + 2}s infinite ${Math.random() * 2}s`;
-        star.style.zIndex = '-1';
-        container.appendChild(star);
-      }
-    }
-
-    window.addEventListener('load', () => {
-      createStars();
-      populateAdminCards();
-      setInterval(updateStatuses, 30000);
-      
-      document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          if (link.classList.contains('download-btn') || link.classList.contains('modal-download') || link.classList.contains('discord-button') || link.classList.contains('join-btn') || link.classList.contains('apply-btn')) {
-            e.stopPropagation();
+        const columns = [column1, column2, column3];
+        data.forEach((admin, index) => {
+          const column = columns[Math.floor(index / 2)];
+          if (column) {
+            const card = document.createElement('div');
+            card.className = `admin-card ${admin.role.toLowerCase()}`;
+            card.onclick = () => window.location.href = admin.profileUrl;
+            card.innerHTML = `
+              <h3>${admin.username}</h3>
+              <div class="status ${admin.status}">${admin.status.charAt(0).toUpperCase() + admin.status.slice(1)}</div>
+              <p class="description">${admin.about}</p>
+              <p class="role">${admin.role}</p>
+            `;
+            column.appendChild(card);
           }
         });
-      });
-    });
+      } catch (error) {
+        console.error('Error populating admin cards:', error);
+      }
+    }
 
+    // Update admin statuses periodically
+    async function updateStatuses() {
+      try {
+        const data = await fetchStatusUpdates();
+        const cards = document.querySelectorAll('.admin-card');
+        cards.forEach(card => {
+          const username = card.querySelector('h3').textContent;
+          const admin = data.find(a => a.username === username);
+          if (admin) {
+            const statusDiv = card.querySelector('.status');
+            statusDiv.className = `status ${admin.status}`;
+            statusDiv.textContent = admin.status.charAt(0).toUpperCase() + admin.status.slice(1);
+          }
+        });
+      } catch (error) {
+        console.error('Error updating statuses:', error);
+      }
+    }
+
+    // Show a specific section
+    function showSection(sectionId) {
+      try {
+        document.querySelectorAll('section').forEach(section => {
+          section.classList.remove('active');
+        });
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+          
+          if (sectionId === 'cheats') {
+            document.querySelectorAll('.tile').forEach((tile, index) => {
+              tile.style.opacity = '0';
+              tile.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                tile.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                tile.style.opacity = '1';
+                tile.style.transform = 'translateY(0)';
+              }, index * 100);
+            });
+          } else if (sectionId === 'admin') {
+            document.querySelectorAll('.admin-card').forEach((card, index) => {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, index * 100);
+            });
+          } else if (sectionId === 'partners') {
+            document.querySelectorAll('.partner-card').forEach((card, index) => {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, index * 100);
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error showing section:', error);
+      }
+    }
+
+    // Open modal for cheat details
+    function openModal(title, videoUrl, description, features, downloadLink) {
+      try {
+        const cheatsSection = document.getElementById('cheats');
+        if (!cheatsSection.classList.contains('active')) {
+          return;
+        }
+
+        const modal = document.getElementById('cheatModal');
+        document.getElementById('modalTitle').textContent = title;
+        const videoIdMatch = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+)/);
+        if (videoIdMatch && videoIdMatch[1]) {
+          const videoId = videoIdMatch[1];
+          document.getElementById('modalVideo').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}`;
+        }
+        document.getElementById('modalDescription').textContent = description;
+        
+        const featuresContainer = document.getElementById('modalFeatures');
+        featuresContainer.innerHTML = '';
+        features.forEach(feature => {
+          const tag = document.createElement('span');
+          tag.className = 'feature-tag';
+          tag.textContent = feature;
+          featuresContainer.appendChild(tag);
+        });
+        
+        document.getElementById('modalDownloadLink').href = downloadLink;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } catch (error) {
+        console.error('Error opening modal:', error);
+      }
+    }
+
+    // Close modal
+    function closeModal() {
+      try {
+        const modal = document.getElementById('cheatModal');
+        modal.classList.remove('active');
+        document.getElementById('modalVideo').src = '';
+        document.body.style.overflow = '';
+      } catch (error) {
+        console.error('Error closing modal:', error);
+      }
+    }
+
+    // Create background stars
+    function createStars() {
+      try {
+        const container = document.body;
+        for (let i = 0; i < 50; i++) {
+          const star = document.createElement('div');
+          star.style.position = 'fixed';
+          star.style.width = Math.random() * 3 + 1 + 'px';
+          star.style.height = star.style.width;
+          star.style.backgroundColor = 'white';
+          star.style.borderRadius = '50%';
+          star.style.left = Math.random() * 100 + 'vw';
+          star.style.top = Math.random() * 100 + 'vh';
+          star.style.opacity = '0';
+          star.style.animation = `starPulse ${Math.random() * 3 + 2}s infinite ${Math.random() * 2}s`;
+          star.style.zIndex = '-1';
+          container.appendChild(star);
+        }
+      } catch (error) {
+        console.error('Error creating stars:', error);
+      }
+    }
+
+    // Particle animation
     const canvas = document.createElement('canvas');
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
@@ -1063,29 +1012,59 @@
     }
 
     function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      try {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = p.color;
-        ctx.fill();
-      });
-      requestAnimationFrame(animateParticles);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+      } catch (error) {
+        console.error('Error animating particles:', error);
+      }
     }
 
-    animateParticles();
+    // Initialize the page
+    function initialize() {
+      try {
+        createStars();
+        populateAdminCards();
+        setInterval(updateStatuses, 30000);
+        
+        document.querySelectorAll('a.symmetric-btn').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.stopPropagation();
+          });
+        });
 
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
+        document.getElementById('cheatModal').addEventListener('click', (e) => {
+          if (e.target === e.currentTarget) {
+            closeModal();
+          }
+        });
+
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        });
+      } catch (error) {
+        console.error('Error initializing page:', error);
+      }
+    }
+
+    // Run initialization when the page loads
+    window.addEventListener('load', initialize);
   </script>
 </body>
 </html>
