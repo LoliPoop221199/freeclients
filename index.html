@@ -231,7 +231,7 @@
     .video-container {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      padding-top: 56.25%;
       overflow: hidden;
       border-radius: 15px 15px 0 0;
     }
@@ -321,7 +321,6 @@
       align-items: center;
       margin-bottom: 20px;
       padding-bottom: 15px;
-      border-bottom: 1px solid rgba(0, 200, 255, 0.2);
     }
 
     .modal-header h3 {
@@ -469,6 +468,7 @@
 
     #admin {
       text-align: center;
+      padding: 50px 30px;
     }
 
     #partners {
@@ -478,7 +478,7 @@
     .admin-container, .partner-container {
       display: grid;
       grid-template-columns: repeat(3, minmax(200px, 1fr));
-      gap: 20px;
+      gap: 40px;
       max-width: 1200px;
       width: 100%;
       padding: 20px;
@@ -499,8 +499,9 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 200px;
-      min-height: 200px;
+      height: 250px;
+      min-height: 250px;
+      margin-bottom: 20px;
     }
 
     .admin-card::before, .partner-card::before {
@@ -575,8 +576,9 @@
       margin-bottom: 10px;
       line-height: 1.5;
       flex-grow: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      overflow: visible;
+      white-space: normal;
+      text-align: center;
     }
 
     .admin-card .role {
@@ -681,7 +683,10 @@
       .modal-video-container { height: 200px; }
       .video-container { padding-top: 56.25%; }
       #home .discord-button { font-size: 16px; padding: 12px 30px; }
-      .admin-card, .partner-card { height: 180px; min-height: 180px; }
+      .admin-card, .partner-card { height: 220px; min-height: 220px; }
+      #admin { padding: 30px 15px; }
+      .admin-container { gap: 30px; }
+      .admin-card { margin-bottom: 15px; }
     }
   </style>
 </head>
