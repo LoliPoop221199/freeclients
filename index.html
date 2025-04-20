@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FreeClients - Discord Сервер по Читам для Minecraft</title>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/5968/5968704.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Press+Start+2P&display=swap');
 
@@ -230,12 +231,15 @@
     .video-container {
       position: relative;
       width: 100%;
-      height: 160px;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
       overflow: hidden;
-      background: black;
+      border-radius: 15px 15px 0 0;
     }
 
     .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border: none;
@@ -467,7 +471,11 @@
       text-align: center;
     }
 
-    .admin-container {
+    #partners {
+      text-align: center;
+    }
+
+    .admin-container, .partner-container {
       display: grid;
       grid-template-columns: repeat(3, minmax(200px, 1fr));
       gap: 20px;
@@ -476,13 +484,7 @@
       padding: 20px;
     }
 
-    .admin-column {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .admin-card {
+    .admin-card, .partner-card {
       background: rgba(15, 25, 50, 0.6);
       backdrop-filter: blur(15px);
       border-radius: 15px;
@@ -497,11 +499,11 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 200px; /* Fixed height for symmetry */
+      height: 200px;
       min-height: 200px;
     }
 
-    .admin-card::before {
+    .admin-card::before, .partner-card::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -514,17 +516,17 @@
       z-index: -1;
     }
 
-    .admin-card:hover::before {
+    .admin-card:hover::before, .partner-card:hover::before {
       transform: rotate(45deg) translateX(100%);
     }
 
-    .admin-card:hover {
+    .admin-card:hover, .partner-card:hover {
       transform: translateY(-10px) scale(1.03);
       box-shadow: 0 15px 40px rgba(0, 150, 255, 0.4);
       border-color: rgba(0, 200, 255, 0.5);
     }
 
-    .admin-card h3 {
+    .admin-card h3, .partner-card h3 {
       font-size: 24px;
       margin-bottom: 10px;
       font-weight: 700;
@@ -567,7 +569,7 @@
       box-shadow: 0 0 5px #747f8d;
     }
 
-    .admin-card .description {
+    .admin-card .description, .partner-card .description {
       font-size: 14px;
       color: #c0c0c0;
       margin-bottom: 10px;
@@ -595,6 +597,25 @@
     .admin-card.admin h3 {
       color: #ff4d4d;
       text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+    }
+
+    .partner-card .join-btn, .partner-card .apply-btn {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(45deg, #7289da, #00f2ff);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 150, 255, 0.4);
+      margin-top: 10px;
+    }
+
+    .partner-card .join-btn:hover, .partner-card .apply-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 150, 255, 0.6);
     }
 
     footer {
@@ -654,13 +675,13 @@
       nav ul li { margin: 0 15px; }
       nav ul li a { font-size: 16px; }
       .tile-container { grid-template-columns: 1fr; }
-      .admin-container { grid-template-columns: 1fr; }
+      .admin-container, .partner-container { grid-template-columns: 1fr; }
       section { padding: 20px 10px; }
       .modal-content { width: 95%; padding: 20px; }
       .modal-video-container { height: 200px; }
-      .video-container { height: 120px; }
+      .video-container { padding-top: 56.25%; }
       #home .discord-button { font-size: 16px; padding: 12px 30px; }
-      .admin-card { height: 180px; min-height: 180px; }
+      .admin-card, .partner-card { height: 180px; min-height: 180px; }
     }
   </style>
 </head>
@@ -670,6 +691,7 @@
       <li><a href="#home" onclick="showSection('home')">Главная</a></li>
       <li><a href="#cheats" onclick="showSection('cheats')">Читы</a></li>
       <li><a href="#admin" onclick="showSection('admin')">Администрация</a></li>
+      <li><a href="#partners" onclick="showSection('partners')">Партнёры</a></li>
     </ul>
   </nav>
 
@@ -696,12 +718,12 @@
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <div class="tile" onclick="openModal('LiquidBounce b100', 'https://youtu.be/41DEz1N9r1I?si=3-oY_8QGLUHq0Ayi', 'Популярный чит с обходами Intave, Polar, Matrix. Версия для 1.8.9', ['Intave', 'Polar', 'Matrix'], 'https://dsc.gg/freeclients')">
+      <div class="tile" onclick="openModal('Breeze 1.01', 'https://youtu.be/BKPEwFLTaNA?si=5B6ZQGuIcd9X4Rqc', 'Легитный чит для скрытого читинга. Версия для 1.8.9', ['Intave', 'NCP', 'AAC'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/41DEz1N9r1I?autoplay=1&loop=1&mute=1&playlist=41DEz1N9r1I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BKPEwFLTaNA?autoplay=1&loop=1&mute=1&playlist=BKPEwFLTaNA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <h3>LiquidBounce b100</h3>
-        <p>Обходы: Intave, Polar, Matrix</p>
+        <h3>Breeze 1.01</h3>
+        <p>Обходы: Intave, NCP, AAC</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
@@ -723,12 +745,12 @@
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
-      <div class="tile" onclick="openModal('Breeze 1.01', 'https://youtu.be/BKPEwFLTaNA?si=5B6ZQGuIcd9X4Rqc', 'Легитный чит для скрытого читинга. Версия для 1.8.9', ['Intave', 'NCP', 'AAC'], 'https://dsc.gg/freeclients')">
+      <div class="tile" onclick="openModal('LiquidBounce b100', 'https://youtu.be/41DEz1N9r1I?si=3-oY_8QGLUHq0Ayi', 'Популярный чит с обходами Intave, Polar, Matrix. Версия для 1.8.9', ['Intave', 'Polar', 'Matrix'], 'https://dsc.gg/freeclients')">
         <div class="video-container">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BKPEwFLTaNA?autoplay=1&loop=1&mute=1&playlist=BKPEwFLTaNA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/41DEz1N9r1I?autoplay=1&loop=1&mute=1&playlist=41DEz1N9r1I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <h3>Breeze 1.01</h3>
-        <p>Обходы: Intave, NCP, AAC</p>
+        <h3>LiquidBounce b100</h3>
+        <p>Обходы: Intave, Polar, Matrix</p>
         <a href="https://discord.com/invite/X6hg2MKr2J" class="download-btn" onclick="event.stopPropagation()">Скачать</a>
       </div>
       
@@ -750,6 +772,28 @@
       <div class="admin-column" id="column1"></div>
       <div class="admin-column" id="column2"></div>
       <div class="admin-column" id="column3"></div>
+    </div>
+  </section>
+
+  <section id="partners">
+    <h2>Партнёры</h2>
+    <p>Наши уважаемые партнёры, с которыми мы делимся опытом!</p>
+    <div class="partner-container">
+      <div class="partner-card">
+        <h3>BestHackers</h3>
+        <p class="description">BestHackers — сообщество профессиональных читеров, возглавляемое EazyHacker.</p>
+        <a href="https://discord.gg/QzjRhre9Au" class="join-btn">Присоединиться</a>
+      </div>
+      <div class="partner-card">
+        <h3>Здесь мог быть ты</h3>
+        <p class="description">Стань частью нашего сообщества! Подай заявку и делись опытом с лучшими читерами Minecraft.</p>
+        <a href="https://dsc.gg/freeclients" class="apply-btn">Подать заявку</a>
+      </div>
+      <div class="partner-card">
+        <h3>Здесь мог быть ты</h3>
+        <p class="description">Стань частью нашего сообщества! Подай заявку и делись опытом с лучшими читерами Minecraft.</p>
+        <a href="https://dsc.gg/freeclients" class="apply-btn">Подать заявку</a>
+      </div>
     </div>
   </section>
 
@@ -775,7 +819,6 @@
   </footer>
 
   <script>
-    // Mock Discord API response with translated descriptions and swapped luna.system/whydamn
     const mockDiscordData = [
       {
         id: '1058735953482620958',
@@ -827,34 +870,25 @@
       }
     ];
 
-    // Simulate fetching Discord data (replace with real API in production)
     async function fetchDiscordData() {
-      // In production, fetch from your backend API, e.g.:
-      // const response = await fetch('/api/discord/users');
-      // return await response.json();
       return new Promise(resolve => {
         setTimeout(() => resolve(mockDiscordData), 1000);
       });
     }
 
-    // Simulate fetching status updates
     async function fetchStatusUpdates() {
-      // In production, fetch updated statuses from your backend
-      // This mock randomly changes statuses for demonstration
       return mockDiscordData.map(admin => ({
         ...admin,
         status: ['online', 'idle', 'dnd', 'offline'][Math.floor(Math.random() * 4)]
       }));
     }
 
-    // Populate admin cards in a 3-column grid
     async function populateAdminCards() {
       const data = await fetchDiscordData();
       const column1 = document.getElementById('column1');
       const column2 = document.getElementById('column2');
       const column3 = document.getElementById('column3');
 
-      // Distribute admins: 2 per column
       const columns = [column1, column2, column3];
       data.forEach((admin, index) => {
         const column = columns[Math.floor(index / 2)];
@@ -871,7 +905,6 @@
       });
     }
 
-    // Update statuses periodically
     async function updateStatuses() {
       const data = await fetchStatusUpdates();
       const cards = document.querySelectorAll('.admin-card');
@@ -905,6 +938,16 @@
         });
       } else if (sectionId === 'admin') {
         document.querySelectorAll('.admin-card').forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      } else if (sectionId === 'partners') {
+        document.querySelectorAll('.partner-card').forEach((card, index) => {
           card.style.opacity = '0';
           card.style.transform = 'translateY(20px)';
           setTimeout(() => {
@@ -977,12 +1020,11 @@
     window.addEventListener('load', () => {
       createStars();
       populateAdminCards();
-      // Update statuses every 30 seconds
       setInterval(updateStatuses, 30000);
       
       document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
-          if (link.classList.contains('download-btn') || link.classList.contains('modal-download') || link.classList.contains('discord-button')) {
+          if (link.classList.contains('download-btn') || link.classList.contains('modal-download') || link.classList.contains('discord-button') || link.classList.contains('join-btn') || link.classList.contains('apply-btn')) {
             e.stopPropagation();
           }
         });
